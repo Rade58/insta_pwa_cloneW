@@ -10,12 +10,15 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
 
     return webpackMerge(
         {
+            /* optimization: {
+                splitChunks: {chunks: "all"}
+            }, */
             mode,
             output: {
                 filename: 'bundle.js'
             },
             plugins: [
-                new HtmlWebpackPlugin(),
+                // new HtmlWebpackPlugin(),
                 new webpack.ProgressPlugin()
             ],
             module: {
