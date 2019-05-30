@@ -1,0 +1,10 @@
+{
+  "name": "insta_pwa_clone_W",
+  "version": "1.0.1",
+  "description": "app made for practicing webpack and pwa techologies",
+  "main": "index.js",
+  "repository": "https://github.com/Rade58/insta_pwa_cloneW.git",
+  "author": "Rade",
+  "license": "MIT",
+  "private": null
+}
