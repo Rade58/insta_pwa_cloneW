@@ -1,4 +1,4 @@
-work in progress
+:exclamation::exclamation:work in progress:exclamation::exclamation:
 
 # Simple app made for practicing pwa techologies and setting up the right Webpack configuration with many presets
 
