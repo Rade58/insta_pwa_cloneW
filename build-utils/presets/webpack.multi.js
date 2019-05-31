@@ -13,14 +13,19 @@ module.exports = () => ({
         new HtmlWebpackPlugin({                 // HtmlWebpackPlugin INSTANCES NEED TO BE INSTACIATED TO USE html-webpack-change-assets-extension-plugin (ASSIGNING jsExtension PROPERTY)
             filename: "index.html",             // BU THIS WILL ONLY WORK IF I HAVE COMPRESSION PLUGIN (WHICH (I HAVE ITS OWN PRESET) I CAN MERGE TOGETHER WIT THIS CONFIG)
             chunks: ["index"],
-            jsExtension: ".gz", 
+            template: 'src/templates/template.html', 
+            jsExtension: ".gz"
         }),
         new HtmlWebpackPlugin({
             filename: "help/help.html",
             chunks: ["help/help"],
-            jsExtension: ".gz",
+            template: 'src/templates/template.html',
+            jsExtension: ".gz"
         }),
         new HtmlWebpackChangeAssetsExtensionPlugin()            // BY USING THIS PLUGIN .gz FILES WILL BE INSERTED IN HTML INSTED OF .js FILES
     ],
 
 })
+
+// COMPRESSION I NO NO FOR DEVELOPMENT SINCE I NEED TO ENABLE .gz ON SERVER SIDE
+// I NEED TO CREATE CUSTOM multipage preset FOR DEVELOPMENT

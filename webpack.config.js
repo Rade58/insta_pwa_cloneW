@@ -18,7 +18,6 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
                 filename: 'bundle.js'
             },
             plugins: [
-                // new HtmlWebpackPlugin(),
                 new webpack.ProgressPlugin()
             ],
             module: {

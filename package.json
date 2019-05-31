@@ -19,6 +19,7 @@
     "prod:compress": "npm run prod -- --env.presets compress",
     "dev:compress": "npm run dev -- --env.presets compress",
     "dev:multi": "npm run dev -- --env.presets multi",
+    "dev:multi:compress": "npm run dev:multi -- --env.presets compress",
     "prod:multi": "npm run prod -- --env.presets multi",
     "prod:multi:compress": "npm run prod:multi -- --env.presets compress"
   },
