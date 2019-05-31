@@ -13,15 +13,12 @@
     "debug": "node --inspect --inspect-brk ./node_modules/webpack/bin/webpack.js",
     "dev": "npm run webpack-dev-server -- --env.mode development --hot",
     "prod": "npm run webpack -- --env.mode production",
-    "prod:typescript": "npm run prod -- --env.presets typescript",
     "dev:debug": "npm run debug -- --env.mode development",
     "prod:debug": "npm run debug -- --env.mode production",
     "prod:compress": "npm run prod -- --env.presets compress",
-    "dev:compress": "npm run dev -- --env.presets compress",
-    "dev:multi": "npm run dev -- --env.presets multi",
-    "dev:multi:compress": "npm run dev:multi -- --env.presets compress",
-    "prod:multi": "npm run prod -- --env.presets multi",
-    "prod:multi:compress": "npm run prod:multi -- --env.presets compress"
+    "prod:single_compress_serve": "npm run prod -- --env.presets single_compress_serve",
+    "prod:multi_compress_serve": "npm run prod -- --env.presets multi_compress_serve",
+    "dev:multi": "npm run dev -- --env.presets multi"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^2.0.0",

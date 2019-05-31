@@ -11,7 +11,6 @@ module.exports = () => {
             chunkFilename: '[name]-lazy-load.js'  // FOR LAZY LOADING import() (USE MAGIC COMMENTS)
         },
         // DON'T EVER USE style-loader FOR PRODUCTION, ESPECIALLY WHEN YOU HAVE mini-css-extract-plugin (WATCH FOR MERGING WITH SOME CONFIG THAT HAS MENTIONED LOADER (IT WILL CAUSE ERROR))
-
         module: {
             rules: [
                 {test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader"]}

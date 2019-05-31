@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = () => ({
     output: {
         chunkFilename: '[name]-lazy-load.js',
@@ -7,5 +9,8 @@ module.exports = () => ({
             {test: /.css$/, use: ["style-loader", "css-loader"]}
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin()
+    ]
 
 })

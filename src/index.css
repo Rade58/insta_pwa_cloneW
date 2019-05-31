@@ -1,9 +1,9 @@
-footer {
+a {
     width: 100%;
     height: 10vw;
     background-color: olive;
 }
 
-footer::before {
-    content: "something new";
+a::before {
+    content: "something new ";
 }
