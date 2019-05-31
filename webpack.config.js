@@ -29,7 +29,7 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
                             {loader: "url-loader", options: {limit: 5000}}
                         ]
                     },
-                    {test: /.css$/, use: ["style-loader", "css-loader"]}
+                    
                 ]
             }
         },

@@ -1,7 +1,9 @@
 import './index.css';
 
-const footer = document.createElement("footer");
+const anchor = document.createElement('a')
 
-document.body.append(footer)
+anchor.textContent = "help";
 
-footer.textContent = "text";
+anchor.href = "/help/help.html";
+
+document.body.append(anchor)
