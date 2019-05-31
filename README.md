@@ -1,3 +1,5 @@
+work in progress
+
 # Simple app made for practicing pwa techologies and setting up the right Webpack configuration with many presets
 
 ## Bundled with webpack
