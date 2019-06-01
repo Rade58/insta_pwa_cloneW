@@ -1,9 +1,48 @@
-a {
-    width: 100%;
-    height: 10vw;
-    background-color: olive;
+#app, body, html {
+    margin: 0;
+    padding: 0;
 }
 
-a::before {
-    content: "something new ";
+#app {
+    border: 0px solid tomato;
+    width: 100%;
+    box-sizing: border-box;
+    
+    display: grid;
+    grid-gap: 18px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 24em 2000px 200px;
+
+
+    /* NARAVNO ZA SUBSTRING-OVE, KORISTIM KARAKTERE PO MOJOJ ZELJI */
+
+    grid-template-areas: "h h h h h h h h h h h h"
+                         ". . . m m m m m m . . ."
+                         "f f f f f f f f f f f f";
+}
+
+/* helping border styles */
+header, main, footer {
+    border: olive solid 2px;
+}
+
+/**/
+
+header {
+    grid-area: h;
+}
+
+header nav {
+    border: green solid 1px;
+    height: 8.5vh;
+}
+
+/************************************************/
+
+main {
+    grid-area: m;
+}
+
+footer {
+    grid-area: f;
 }

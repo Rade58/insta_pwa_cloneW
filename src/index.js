@@ -1,9 +1,16 @@
 import './index.css';
 
-const anchor = document.createElement('a')
 
-anchor.textContent = "help";
+const root = document.querySelector('#app')
+const layoutHtml = `
+    <header>
+        <nav>
+            <div class="he_img_el"></div>
+        </nav>
+    </header>
+    <main></main>
+    <footer></footer>
+`;
 
-anchor.href = "/help/help.html";
+root.innerHTML = layoutHtml;
 
-document.body.append(anchor)

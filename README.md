@@ -12,13 +12,15 @@ Two pages are needed, with one fallback page (for offline if one of the pages is
 
 presets/webpack.multi.js will be merged with main configuration
 
-You can still use 
+You can still use
 
 - yarn dev
 
 SCRIPT FOR SINGE ENTRY POINT AND SINGLE OUTPUT
 
 ## COMPRESSION AND SERVING COMPRESSED JAVASCRIPT INSIDE HTML
+
+[html-webpack-change-assets-extension-plugin](https://www.npmjs.com/package/html-webpack-change-assets-extension-plugin) USED FO INSERTING COMPRESSED FILES IN PAGES (only JavaScript)
 
 single entry point and output:
 
@@ -38,8 +40,8 @@ Also, manifest.json and icons folder I'm going to place inside dist too
 
 ## To test production code with gzip use http-server
 
-- cd dist
+- yarn add http-server@0.9.0 (DOWNGRADED IT BECACAUSE ectatic ISN'T WORKING ON NEWEST VERSIONS)
 
-- yarn add http-server@0.9.0 --dev (DOWNGRADED IT BECACAUSE ectatic ISN'T WORKING ON NEWEST VERSIONS)
+- cd dist
 
 - http-server -a localhost -p 7000 -c-1 --gzip
