@@ -23,31 +23,36 @@ self.addEventListener('install', function(ev){
     ev.waitUntil(
         caches.open(STATIC_CACHE)
         .then(function(static_cache){
-            for(let path of assets){
-                fetch(path)
-                .then(function(response){
-                    static_cache.put(path, response)
-                })
-            }
 
-            // DON'T FORGET TO CACHE:        '/'
-            // ALSO YOU CAN CACHE MATERIAL ICON FONT AND ROBOTO FONT, MAYBE ALSO A favicon (ADD FAVICON LATER (MAYBE WHEN YOU LEARN HOW USE SOME PLUGIN THAT COPISE FILES FROM src TO dist))
-        
+            Promise.resolve((function(){
 
-            const librariesAndTheRest = [                                 // ALSO THIS ARRAY CAN BE CONCATANATED WITH  assets ARRAY (BUT I'LL LEAVE IT LIKE THIS FOR NOW)
-                '/',                                                        // IF I DID THAT I WOULDN'T BE USIG TWO for of STATEMENTS
-                'https://fonts.googleapis.com/css?family=Roboto:400,700',
-                'https://fonts.googleapis.com/icon?family=Material+Icons',
+                    for(let path of assets){
+                        fetch(path)
+                        .then(function(response){
+                            static_cache.put(path, response)
+                        })
+                    }
 
-            ] 
+                    // DON'T FORGET TO CACHE:        '/'
+                    // ALSO YOU CAN CACHE MATERIAL ICON FONT AND ROBOTO FONT, MAYBE ALSO A favicon (ADD FAVICON LATER (MAYBE WHEN YOU LEARN HOW USE SOME PLUGIN THAT COPISE FILES FROM src TO dist))
+                
 
-            for(let pt of librariesAndTheRest){
-                fetch(pt)
-                .then(function(resp){
-                    static_cache.put(pt, resp)
-                })
+                    const librariesAndTheRest = [                                 // ALSO THIS ARRAY CAN BE CONCATANATED WITH  assets ARRAY (BUT I'LL LEAVE IT LIKE THIS FOR NOW)
+                        '/',                                                        // IF I DID THAT I WOULDN'T BE USIG TWO for of STATEMENTS
+                        'https://fonts.googleapis.com/css?family=Roboto:400,700',
+                        'https://fonts.googleapis.com/icon?family=Material+Icons',
 
-            }
+                    ] 
+
+                    for(let pt of librariesAndTheRest){
+                        fetch(pt)
+                        .then(function(resp){
+                            static_cache.put(pt, resp)
+                        })
+
+                    }
+
+            })())
             
         })
     );
@@ -63,17 +68,29 @@ self.addEventListener('activate', function(ev){
     ev.waitUntil(
         caches.keys()
         .then(function(keys){
-            keys.map(function(cacheName){
+            Promise.all(
+                keys.map(function(cacheName){
 
-                if(cacheName !== STATIC_CACHE && 
-                   cacheName !== DYNAMIC_CACHE && 
-                   cacheName !== ON_DEMAND_CACHE){
-                    
-                    caches.delete(cacheName);    
+                    if(cacheName !== STATIC_CACHE && 
+                    cacheName !== DYNAMIC_CACHE && 
+                    cacheName !== ON_DEMAND_CACHE){
+                        
+                    return caches.delete(cacheName);
 
-                }
+                    }
 
-            })
+                })
+            )
         })
     )
+})
+
+// INTERCEPTING NETWORK REQUEST (IT'S ALLOWED ONLY AFTER NEW SERVICE WORKER IS ACTIVATED) AND
+// AND CACHING DYNAMIC ASSETS       onfetch
+
+self.addEventListener('fetch', function(ev){
+
+
+    // ev.respondWith()
+
 })
