@@ -5,7 +5,9 @@ module.exports = () => ({
         new ServiceWorkerWebpackPlugin({
             entry: './src/sw.js',
             filename: 'sw.js',
-            
+
         })
     ]
 })
+
+// assets ARRAY IS GENERATED AND AVAILABLE IN sw FILE THROUGH global.serviceWorkerOption.assets (NO NEED FOR SPECIFIING STATIC ASSETS)
