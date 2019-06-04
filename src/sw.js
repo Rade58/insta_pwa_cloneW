@@ -58,3 +58,22 @@ self.addEventListener('install', function(ev){
                                                                                             //               WILL NOT EXIST
 
 // NOW DEFINING CLEARING OLD, OUTDATED CACHES         onactivate
+
+self.addEventListener('activate', function(ev){
+    ev.waitUntil(
+        caches.keys()
+        .then(function(keys){
+            keys.map(function(cacheName){
+
+                if(cacheName !== STATIC_CACHE && 
+                   cacheName !== DYNAMIC_CACHE && 
+                   cacheName !== ON_DEMAND_CACHE){
+                    
+                    caches.delete(cacheName);    
+
+                }
+
+            })
+        })
+    )
+})
