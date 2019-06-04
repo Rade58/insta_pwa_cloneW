@@ -30,7 +30,7 @@ multi entries and outputs
 
 - yarn prod:multi_compress_serve
 
-### FOR SERVICE WORKER I'LL TRY USE "serviceworker-webpack-plugin", AS A PRESET CONFIGURATION
+## FOR SERVICE WORKER I'LL TRY USE "serviceworker-webpack-plugin", AS A PRESET CONFIGURATION
 
 ["serviceworker-webpack-plugin"](https://www.npmjs.com/package/serviceworker-webpack-plugin)
 
