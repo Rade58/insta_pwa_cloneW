@@ -18,7 +18,12 @@ module.exports = () => {
         },
         plugins: [
             new HtmlWebpackPlugin(),
-            new MiniCssExtractPlugin()
+            new MiniCssExtractPlugin(),
+            new HtmlWebpackPlugin({                         // PROVIDING FALLBACK PAGE
+                filename: "fallback_offline.html",
+                chunks: ["fallback_offline"],
+                template: 'src/templates/fallback_offline.html',
+            }),
         ]
 
     }

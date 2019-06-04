@@ -19,6 +19,7 @@ module.exports = () => ({
             chunks: ["help/help"],
             template: 'src/templates/template.html',
         })            
+                    
     ],
 
 })

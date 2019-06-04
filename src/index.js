@@ -23,3 +23,10 @@ root.innerHTML = layoutHtml;
 console.log(header_image);
 
 document.querySelector('header img').src = header_image;
+
+const anch = document.createElement('a');
+anch.innerText = 'neki link';
+anch.href = '/fakeurl.html';
+anch.type = "text/html";
+
+document.body.prepend(anch);
