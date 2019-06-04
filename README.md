@@ -30,13 +30,19 @@ multi entries and outputs
 
 - yarn prod:multi_compress_serve
 
-### Service Worker I'm going to test only in production, so it is placed by hand inside build folder (dist FOLDER)
+### FOR SERVICE WORKER I'LL TRY USE "serviceworker-webpack-plugin", AS A PRESET CONFIGURATION
 
-During development of the app, all pwa related files will be kept inside pwa_realted FOLDER (AFTER DEVELOPMENT I WILL PASS IT CONTENT TO dist)
+["serviceworker-webpack-plugin"](https://www.npmjs.com/package/serviceworker-webpack-plugin)
 
-Service Worker file needs to be on same file/folder level as the the index.html
+[git repo](https://github.com/oliviertassinari/serviceworker-webpack-plugin)
 
-Also, manifest.json and icons folder I'm going to place inside dist too
+DEVELOPMENT SCRIPT
+
+- yarn dev:multi:serviceworker
+
+## manifest.json
+
+Also, manifest.json and icons folder I'm going to place inside dist too :exclamation::exclamation: (CONSIDERING PLUGIN)
 
 ## To test production code with gzip use http-server
 
@@ -45,3 +51,7 @@ Also, manifest.json and icons folder I'm going to place inside dist too
 - cd dist
 
 - http-server -a localhost -p 7000 -c-1 --gzip
+
+## ZERO LIBRARIES FOR CSS
+
+I want to practice css

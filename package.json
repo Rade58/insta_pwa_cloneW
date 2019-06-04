@@ -18,7 +18,8 @@
     "prod:compress": "npm run prod -- --env.presets compress",
     "prod:single_compress_serve": "npm run prod -- --env.presets single_compress_serve",
     "prod:multi_compress_serve": "npm run prod -- --env.presets multi_compress_serve",
-    "dev:multi": "npm run dev -- --env.presets multi"
+    "dev:multi": "npm run dev -- --env.presets multi",
+    "dev:multi:serviceworker": "npm run dev:multi -- --env.presets serviceworker"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^2.0.0",
@@ -27,6 +28,7 @@
     "html-webpack-change-assets-extension-plugin": "^1.2.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.7.0",
+    "serviceworker-webpack-plugin": "^1.0.1",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.32.2",

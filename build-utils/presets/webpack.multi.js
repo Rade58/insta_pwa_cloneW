@@ -23,4 +23,4 @@ module.exports = () => ({
 
 })
 
-// USE IT WITH dev OR prod
+// IT CAN BE USED WITH BOTH, dev OR prod

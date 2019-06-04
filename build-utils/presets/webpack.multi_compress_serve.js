@@ -24,7 +24,7 @@ module.exports = () => ({
             template: 'src/templates/template.html',
             jsExtension: ".gz"
         }),
-        new HtmlWebpackChangeAssetsExtensionPlugin(),            // BY USING THIS PLUGIN .gz FILES WILL BE INSERTED IN HTML INSTED OF .js FILES
+        new HtmlWebpackChangeAssetsExtensionPlugin(),            // BY USING THIS PLUGIN, .gz FILES WILL BE INSERTED IN HTML INSTED OF .js FILES
         new CompressionWebpackPlugin()
     ],
 
