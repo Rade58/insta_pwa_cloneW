@@ -36,7 +36,7 @@ multi entries and outputs
 
 - yarn prod:multi_compress_serve
 
-## FOR SERVICE WORKER I'LL TRY USE "serviceworker-webpack-plugin", AS A PRESET CONFIGURATION
+## FOR SERVICE WORKER I'M USING "serviceworker-webpack-plugin", AS A PRESET CONFIGURATION
 
 ["serviceworker-webpack-plugin"](https://www.npmjs.com/package/serviceworker-webpack-plugin)
 
@@ -56,9 +56,11 @@ DEVELOPMENT SCRIPT IS EXECUTED WITH:
 
 - yarn dev:multi:serviceworker:pwamanifest
 
-## For generating (copying) favicon.png TO didt, I'M GOING TO USE 'copy-webpack-plugin'
+## For generating (copying) favicon.png TO dist, 'copy-webpack-plugin' is used
 
 [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin)
+
+
 
 ## To test production code with gzip use http-server
 

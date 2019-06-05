@@ -26,7 +26,15 @@
     "prod:multi:serviceworker": "npm run prod:multi -- --env.presets serviceworker",
     "prod:single_compress_serve:serviceworker": "npm run prod:single_compress_serve -- --env.presets serviceworker",
     "prod:multi_compress_serve:serviceworker": "npm run prod:multi_compress_serve -- --env.presets serviceworker",
-    "dev:multi:serviceworker:pwamanifest": "npm run dev:multi:serviceworker -- --env.presets pwamanifest"
+    "dev:multi:serviceworker:pwamanifest": "npm run dev:multi:serviceworker -- --env.presets pwamanifest",
+    "dev:multi:serviceworker:pwamanifest:copy": "npm run dev:multi:serviceworker:pwamanifest -- --env.presets copy",
+    
+    "prod:single_compress_serve:serviceworker:pwamanifest": "npm run prod:single_compress_serve:serviceworker -- --env.presets pwamanifest",
+    "prod:multi_compress_serve:serviceworker:pwamanifest": "npm run prod:multi_compress_serve:serviceworker -- --env.presets pwamanifest",
+    "prod:single_compress_serve:serviceworker:pwamanifest:copy": "npm run prod:single_compress_serve:serviceworker:pwamanifest -- --env.presets copy",
+    "prod:multi_compress_serve:serviceworker:pwamanifest:copy": "npm run prod:multi_compress_serve:serviceworker:pwamanifest -- --env.presets copy"
+
+
   },
   "devDependencies": {
     "compression-webpack-plugin": "^2.0.0",
