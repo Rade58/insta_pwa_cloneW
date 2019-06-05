@@ -15,6 +15,10 @@
 
 const {assets} = global.serviceWorkerOption;        // assets IS ARRAY OF PATHS
 
+
+// I MUST FIND A WAY TO EXCLUDE THESE PTHS WHICH HAS .map.gz AT THE END AND .map BECAUSE I DON'T WANT THESE FILES IN MY CACHE
+
+
 const librariesAndOther = [                                 // ALSO THIS ARRAY CAN BE CONCATANATED WITH  assets ARRAY (BUT I'LL LEAVE IT LIKE THIS FOR NOW)
     '/',                                                        // IF I DID THAT I WOULDN'T BE USING TWO for of STATEMENTS INSIDE oninstall HANDLER SCOPE
     'https://fonts.googleapis.com/css?family=Roboto:400,700',
@@ -22,8 +26,8 @@ const librariesAndOther = [                                 // ALSO THIS ARRAY C
 ];
 
 
-const STATIC_CACHE = 'static-cache-v0';
-const DYNAMIC_CACHE = 'dynamic-cache-v0';
+const STATIC_CACHE = 'static-cache-v8';
+const DYNAMIC_CACHE = 'dynamic-cache-v8';
 const ON_DEMAND_CACHE = 'on_demand_cache_v0'
 
 self.addEventListener('install', function(ev){

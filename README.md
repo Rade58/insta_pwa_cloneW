@@ -1,4 +1,8 @@
-:exclamation::exclamation:work in progress:exclamation::exclamation:
+:exclamation::exclamation:work in progress:exclamation::exclamation: 
+
+reminder:
+
+(need to shorten script names when i finsh defining all necessary presets)
 
 # Simple app made for practicing pwa techologies and setting up the right Webpack configuration with many presets
 
@@ -42,7 +46,13 @@ DEVELOPMENT SCRIPT
 
 ## manifest.json
 
-Also, manifest.json and icons folder I'm going to place inside dist too :exclamation::exclamation: (CONSIDERING PLUGIN)
+[webpack-pwa-manifest](https://github.com/arthurbergmz/webpack-pwa-manifest) (I'LL USE THIS ONE, BECAUSE I NEED TO PROVIDE JUST LARGEST ICON, AND TOGETHER WITH MANIFEST FILE, ALL ICONS IN ALL SIZES ARE GOING TO BE PROVIDED)
+
+THIS PLUGIN INSERTS `<meta>`S AND `<link>`S IN `<head></head>` TAG (I LEFT OLD META TAGS (FROM OTHER PROJECT), I INSETED BY HAND IN TEMPLATE (COMMENTED THEM OUT TO JUST CHECK IF EVERY meta OR link))
+
+DEVELOPMENT SCRIPT IS EXECUTED WITH:
+
+- yarn dev:multi:serviceworker:pwamanifest
 
 ## To test production code with gzip use http-server
 
@@ -52,6 +62,6 @@ Also, manifest.json and icons folder I'm going to place inside dist too :exclama
 
 - http-server -a localhost -p 7000 -c-1 --gzip
 
-## ZERO LIBRARIES FOR CSS
+## ZERO LIBRARIES FOR CSS (only material icon font and roboto font)
 
 I want to practice css
