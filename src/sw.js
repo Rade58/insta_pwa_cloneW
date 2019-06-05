@@ -23,6 +23,7 @@ const librariesAndOther = [                                 // ALSO THIS ARRAY C
     '/',                                                        // IF I DID THAT I WOULDN'T BE USING TWO for of STATEMENTS INSIDE oninstall HANDLER SCOPE
     'https://fonts.googleapis.com/css?family=Roboto:400,700',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
+    '/copied_assets/favicon.png'
 ];
 
 
