@@ -60,7 +60,13 @@ DEVELOPMENT SCRIPT IS EXECUTED WITH:
 
 [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin)
 
+since this plugin was the last I defined in preset configuration, these are development and production scripts that I'm going to use
 
+- dev:multi_compress_serve:serviceworker:pwamanifest:copy
+
+- prod:multi_compress_serve:serviceworker:pwamanifest:copy
+
+SINCE THIS IS COMPOSITION, EVERY OTHER SPECIFIED SCRIPT IN package.json IS WORKING
 
 ## To test production code with gzip use http-server
 
@@ -73,3 +79,7 @@ DEVELOPMENT SCRIPT IS EXECUTED WITH:
 ## ZERO LIBRARIES FOR CSS (only material icon font and roboto font)
 
 I want to practice css
+
+## INSPECT WHAT YOU HAVE IN DIST FOLDER AFTER EVERY PRODUCTION BUILD
+
+ERASE ANY COMPRESSED SERVICE WORKER FILE, AND YOU DON'T NEED MAPS AND COMPRESSED MAPS OF SERVICE WORKER FILE
