@@ -2,9 +2,11 @@
 
 reminder:
 
-(need to shorten script names when i finsh defining all necessary presets)
+- (need to shorten script names when i finsh defining all necessary presets)
 
-# Simple app made for practicing pwa techologies and setting up the right Webpack configuration with many presets
+# App made for practicing pwa techologies and setting up the right Webpack configuration with many presets
+
+Probably, I'm going to use this configuration for my portfolio
 
 ## Bundled with webpack
 
@@ -53,6 +55,10 @@ THIS PLUGIN INSERTS `<meta>`S AND `<link>`S IN `<head></head>` TAG (I LEFT OLD M
 DEVELOPMENT SCRIPT IS EXECUTED WITH:
 
 - yarn dev:multi:serviceworker:pwamanifest
+
+## For generating (copying) favicon.png TO didt, I'M GOING TO USE 'copy-webpack-plugin'
+
+[copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin)
 
 ## To test production code with gzip use http-server
 

@@ -13,21 +13,28 @@
 
                         // I CAN USE MENTIONED TO ACCESS FILE PATHS OF MY PROJECT, AND CACHE THESE FILES        oninstal
 
-const {assets} = global.serviceWorkerOption;        // assets IS ARRAY OF PATHS
+let {assets} = global.serviceWorkerOption;        // assets IS ARRAY OF PATHS
 
 
-// I MUST FIND A WAY TO EXCLUDE THESE PTHS WHICH HAS .map.gz AT THE END AND .map BECAUSE I DON'T WANT THESE FILES IN MY CACHE
+// FILTER '.map' FILES AND '.map.gzip' FILES FROM CACHING oninstal
+
+assets = assets.filter(function(url){
+    if(!(/\.map(\.gzip)?$/.test(url))){
+        return url;
+    }
+})
 
 
 const librariesAndOther = [                                 // ALSO THIS ARRAY CAN BE CONCATANATED WITH  assets ARRAY (BUT I'LL LEAVE IT LIKE THIS FOR NOW)
     '/',                                                        // IF I DID THAT I WOULDN'T BE USING TWO for of STATEMENTS INSIDE oninstall HANDLER SCOPE
     'https://fonts.googleapis.com/css?family=Roboto:400,700',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
+    'favicon.png'
 ];
 
 
-const STATIC_CACHE = 'static-cache-v8';
-const DYNAMIC_CACHE = 'dynamic-cache-v8';
+const STATIC_CACHE = 'static-cache-v0';
+const DYNAMIC_CACHE = 'dynamic-cache-v0';
 const ON_DEMAND_CACHE = 'on_demand_cache_v0'
 
 self.addEventListener('install', function(ev){
@@ -35,31 +42,17 @@ self.addEventListener('install', function(ev){
         caches.open(STATIC_CACHE)
         .then(function(static_cache){
 
-            Promise.resolve((function(){
+            let allStaticAssets = assets.concat(librariesAndOther)
 
-                    for(let path of assets){
-                        fetch(path)
-                        .then(function(response){
-                            static_cache.put(path, response)
-                        })
-                    }
-
-                    // DON'T FORGET TO CACHE:        '/'
-                    // ALSO YOU CAN CACHE MATERIAL ICON FONT AND ROBOTO FONT, MAYBE ALSO A favicon 
-                    // (ADD FAVICON LATER (MAYBE WHEN YOU LEARN HOW USE SOME PLUGIN THAT COPISE FILES FROM src TO dist))
-                    // FOR ALL THIS ASSETS I PROVIDED SEPARATE ARRAY (DECLARED ON THE BEGGING OF THE SCOPE OF THIS FILE)
-                    // I'M TALKING ABOUT    librariesAndOther  Array
-
-                    for(let pt of librariesAndOther){
-                        fetch(pt)
-                        .then(function(resp){
-                            static_cache.put(pt, resp)
-                        })
-
-                    }
-
-            })())
-            
+            return Promise.all(                 // I don't know if it's a requirement (because activation is on hold after first reload) 
+                                                // but I did ensure that Promise is passed 
+                allStaticAssets.map(function(path){       // to Promise.all, when every static asset is cached
+                    return fetch(path)
+                    .then(function(response){
+                        return static_cache.put(path, response)
+                    })
+                })            
+            )
         })
     );
 })
@@ -106,9 +99,9 @@ const findUrl = function(requestsUrl){
 
     const url = new URL(requestsUrl)
 
-    let urls = librariesAndOther.concat(assets);
+    let allStaticAssetUrls = librariesAndOther.concat(assets);
 
-    for(let u of urls){
+    for(let u of allStaticAssetUrls){
         if(url.pathname === u){
             return true;
         }else{
@@ -133,21 +126,18 @@ self.addEventListener('fetch', function(ev){
     if(firebasePath === ev.request.url){
 
     
-    }else if(findUrl(ev.request.url)){                         // HELPER FUNCTION WILL PROVIDE INFORMATINO IF ASSETS IS THE ONE INTENDED TO BE IN STATIC CACHE 
-        
-        // AT THIS POINT STATIC CACHE IS POPULATED WITH Responses FOR STATIC ASSETS
-
-
+    }else if(findUrl(ev.request.url)){            // HELPER FUNCTION WILL PROVIDE INFORMATINO IF ASSETS IS ALREADY IN STATIC CACHE 
+                                                  // SO I NEED TO LOOK FOR IT AND RETURNIND FRO MTHERE                                      
         ev.respondWith(
             self.caches.open(STATIC_CACHE)
             .then(function(static_cache){
                 return static_cache.match(ev.request)     // AT THIS POINT AFTER NEW SERVICE WORKER ACTIVATES I CAN RELOAD THE PAGE
                                                           // AND I CAN CHECK NETWORK REQUEST IN DEV TOOLS
-                                                          // TO SEE IF Responses ARE SERVED FROM CACHE 
+                                                          // TO SEE IF Responses ARE SERVED FROM CACHE
             })
         )
 
-    }else{
+    }else{     // NOTING IF FOUND IN STATIC CACHE, SO I NEED TO SEARCH IT IN DYNAMIC CACHE (BUT I THINK I DIDNT TAKE IN ACCOUND ON_DEMAND_CACHE) (I'LL FIX THIS SOME OTHER TIME)
 
         // HERE I CAN DEFINE DYNAMIC CACHING WITHOUT ANY CHECKS IF INTERCEPTED NETWORK REQUEST IS ONE FOR THE
         // STATIC ASSETS, BECAUSE I ALREDY DID METIONED
