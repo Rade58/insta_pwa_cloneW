@@ -16,10 +16,10 @@
 const {assets} = global.serviceWorkerOption;        // assets IS ARRAY OF PATHS
 
 
-// FILTER '.map' FILES AND '.map.gzip' FILES FROM CACHING oninstal
+// FILTER '.map' FILES AND '.map.gz' FILES FROM CACHING oninstal
 
 const assetsArray = [].concat(assets).filter(function(url){
-    if(!(/\.map(\.gzip)?$/.test(url))){
+    if(!(/\.map(\.gz)?$/.test(url))){
         return url;
     }
 })
