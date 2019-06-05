@@ -6,7 +6,7 @@ reminder:
 
 # App made for practicing pwa techologies and setting up the right Webpack configuration with many presets
 
-Probably, I'm going to use this configuration for my portfolio
+Probably, going to use this configuration for my portfolio
 
 ## Bundled with webpack
 
@@ -48,7 +48,7 @@ DEVELOPMENT SCRIPT
 
 ## manifest.json
 
-[webpack-pwa-manifest](https://github.com/arthurbergmz/webpack-pwa-manifest) (I'LL USE THIS ONE, BECAUSE I NEED TO PROVIDE JUST LARGEST ICON, AND TOGETHER WITH MANIFEST FILE, ALL ICONS IN ALL SIZES ARE GOING TO BE PROVIDED)
+[webpack-pwa-manifest](https://github.com/arthurbergmz/webpack-pwa-manifest) PLUGIN (I'LL USE THIS ONE, BECAUSE I NEED TO PROVIDE JUST LARGEST ICON, AND TOGETHER WITH MANIFEST FILE, ALL ICONS IN ALL SIZES ARE GOING TO BE PROVIDED)
 
 THIS PLUGIN INSERTS `<meta>`S AND `<link>`S IN `<head></head>` TAG (I LEFT OLD META TAGS (FROM OTHER PROJECT), I INSETED BY HAND IN TEMPLATE (COMMENTED THEM OUT TO JUST CHECK IF EVERY meta OR link))
 
