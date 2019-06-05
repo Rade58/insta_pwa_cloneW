@@ -19,7 +19,7 @@ const {assets} = global.serviceWorkerOption;        // assets IS ARRAY OF PATHS
 // FILTER '.map' FILES AND '.map.gz' FILES FROM CACHING oninstal
 
 const assetsArray = [].concat(assets).filter(function(url){
-    if(!(/\.map(\.gz)?$/.test(url))){
+    if(!(/\.map(\.gz)?|html\.gz$/.test(url))){
         return url;
     }
 })
