@@ -3,7 +3,7 @@ import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 // REGISTERING SERVICE WORKER WITH runtime (WITHOUT WEBPACKA, I WOULD USE         
 //                                                      window.navigator.serviceWorker.register()     )
 
-/* export default function(){
+export default function(){
 
     if('serviceWorker' in window.navigator){
 
@@ -14,4 +14,4 @@ import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
     }
 
-} */
+}
