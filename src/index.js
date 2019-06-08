@@ -1,6 +1,6 @@
 // import pwaFunc from './pwa';
 import './index.css';
-import './header.css';
+// import './header.css';
 
 
 
@@ -10,7 +10,7 @@ const root = document.querySelector('#app')
 const layoutHtml = `
     <header>
     <nav></nav>
-        <section>
+        <section class="heder_animation">
             <div></div>
         </section>
     </header>
@@ -20,7 +20,10 @@ const layoutHtml = `
 
 root.innerHTML = layoutHtml;
 
-const background_animation = import('./background_animation');
+const background_header_animation = import('./header_background_animation')
+.then(function(modul){
+    modul.default(16, 14);
+})
 
 
 
