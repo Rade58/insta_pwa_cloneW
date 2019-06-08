@@ -54,50 +54,42 @@ header section div::after {
 }
 
 header section div.image-1::after {
-   background-image: var(--bImage1);
+   background-image: var(--bImage16);
 }
 header section div.image-2::after {
-   background-image: var(--bImage2);
+   background-image: var(--bImage17);
 }
 header section div.image-3::after {
-   background-image: var(--bImage3);
+   background-image: var(--bImage18);
 }
 header section div.image-4::after {
-   background-image: var(--bImage4);
+   background-image: var(--bImage19);
 }
 header section div.image-5::after {
-   background-image: var(--bImage5);
+   background-image: var(--bImage20);
 }
 header section div.image-6::after {
-   background-image: var(--bImage6);
+   background-image: var(--bImage21);
 }
 header section div.image-7::after {
-   background-image: var(--bImage7);
+   background-image: var(--bImage22);
 }
 header section div.image-8::after {
-   background-image: var(--bImage8);
+   background-image: var(--bImage23);
 }
 header section div.image-9::after {
-   background-image: var(--bImage9);
+   background-image: var(--bImage24);
 }
 header section div.image-10::after {
-   background-image: var(--bImage10);
+   background-image: var(--bImage25);
 }
 header section div.image-11::after {
-   background-image: var(--bImage11);
+   background-image: var(--bImage26);
 }
 header section div.image-12::after {
-   background-image: var(--bImage12);
+   background-image: var(--bImage27);
 }
-header section div.image-13::after {
-   background-image: var(--bImage13);
-}
-header section div.image-14::after {
-   background-image: var(--bImage14);
-}
-header section div.image-15::after {
-   background-image: var(--bImage15);
-}
+
 
 
 

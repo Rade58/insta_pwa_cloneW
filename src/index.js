@@ -1,6 +1,6 @@
 // import pwaFunc from './pwa';
 import './index.css';
-import './header.css';
+// import './header.css';
 
 
 

@@ -1,35 +1,35 @@
 import './header.css';
 
 // function that makes two arrays of image urls (USING require)
-const makeImageArrays = quantity => {
-    const array = new Array();
-    for(let i = 0; i < quantity; i++){
-        array.push(require(`./images/image_${i + 1}.jpg`))
+const makeImageArrays = (quantityNormal, quantityOpacity) => {
+    const normalArray = new Array();
+    const opacityArray = new Array();
+    for(let i = 0; i < quantityNormal; i++){
+        normalArray.push(require(`./images/normal/image_${i}.jpg`))
     }
-
-    const arrayReverse = [];
-
-    array.forEach(function(url){
-        arrayReverse.unshift(url);
-    })
+    for(let i = 0; i < quantityOpacity; i++){
+        opacityArray.push(require(`./images/opacity/image_${i}.jpg`))
+    }
     
     return {
-        array,
-        arrayReverse
+        opacityArray,
+        normalArray
     };
 }
 
 // function that creates css variables (custom properties and places them on div ())
 // it also has returned values (OBJECT)       VALUE OF style atribute ( PROPERTY)
 //                                            ARRAY OF 'CALLING' CUSTOM PROPERTY (var(--bimage) SYNTAXES)
-const passStyleToCssVariablesAndMakeStyleString = array => {
+const passStyleToCssVariablesAndMakeStyleString = ({opacityArray, normalArray}) => {
     
-    let styleString = "";
-    let styleArray = [];
+    let styleStringNormal = "";
+    let styleStringOpacity = "";
+    let arrayNormal = [];
+    let arrayOpacity = [];
     
-    let i = 1;
-    for(let url of array){
-        if(i === 1){
+    let i = 0;
+    for(let url of [].concat(normalArray, opacityArray)){
+        if(i === 0){
             document.querySelector('header section')
             .setAttribute('style', `--bImage${i}: url("${url}");`);
         }else{
@@ -40,18 +40,42 @@ const passStyleToCssVariablesAndMakeStyleString = array => {
                 `--bImage${i}: url("${url}");`
             );
         }
-        if(!(array.length === i)){
-            styleString+= `var(--bImage${i}), `;
+
+        if(i < normalArray.length){
+
+            if(!(normalArray.length === i)){
+                styleStringNormal+= `var(--bImage${i}), `;
+            }else{
+                styleStringNormal+= `var(--bImage${i})`;
+            }
+
+            arrayNormal.push(`var(--bImage${i})`);
+        
         }else{
-            styleString+= `var(--bImage${i})`;
-        }
-        styleArray.push(`var(--bImage${i})`);
+            if(!([].concat(normalArray, opacityArray).length === i)){
+                styleStringOpacity+= `var(--bImage${i}), `;
+            }else{
+                styleStringOpacity+= `var(--bImage${i})`;
+            }
+
+            arrayOpacity.push(`var(--bImage${i})`);
+        }    
+            
+        
         i++;
+        
     }
 
+    console.log(styleStringNormal,"----------",
+        styleStringOpacity,"-------------",
+        arrayNormal, "-----------",
+        arrayOpacity)
+
     return {
-        styleString,
-        styleArray
+        styleStringNormal,
+        styleStringOpacity,
+        arrayNormal,
+        opacityArray
     }
 
 }
@@ -62,31 +86,37 @@ const passAllVariablesToBackgroundVar = function(styleString, element){
     element.style.backgroundImage = styleString;
 }
 
-;
 
-const imageArrays = makeImageArrays(16);
-let stringAndArraysVariableStyle = passStyleToCssVariablesAndMakeStyleString(imageArrays.array);
+
+const imageArraysObject = makeImageArrays(15, 13);
+let stringAndArraysVariableStyle = passStyleToCssVariablesAndMakeStyleString(imageArraysObject);
 
 
 // INITIAL DEFINITION OF background-style ON 'header > section > div' ELEMENT
 
 passAllVariablesToBackgroundVar(
-    stringAndArraysVariableStyle.styleString,
+    stringAndArraysVariableStyle.arrayNormal,
     document.querySelector('header section div')
 );
 
 
-;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////next is reusable code: needs to be encapsuleted and exported as a default 
 
 // IN SCOPE OF NEXT FUNCTION I NEED TO DEFINE OPACITY ANIMATION ON PSEUDO ELEMENT OF header > section > div ELEMENT
 // AND CHANGING IMAGE OF AN ELEMENT AFTER ANIMATION (opacity ON PSEUDO) ENDS
 
 const changingImagesFunction = function(){
 
-    const numberReg = /[0-9][0-9]?/;
+    const numberReg = /\d+/;      // THIS REG NEEDS TO BE A PART OF NEST ONE
 
-    const generateReg = function(varNumber){
-        return new RegExp(`[\\w\\s]?var\\(--bImage${varNumber}\\),?`)
+    const generateReg = function(regNumber){
+
+        const completeReg = new RegExp(`[\\w\\s]?var\\(--bImage${regNumber}\\),?`)
+
+        console.log(completeReg);
+
+        return completeReg;
     }
 
     const arrayFromReg = function(member, styleString){
