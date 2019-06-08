@@ -1,0 +1,112 @@
+/* -----------------header image------------------------ */
+
+/* body header section {
+   --bImage1: something;
+   --bImage2: something;
+   --bImage3: something;
+   --bImage4: something;   
+   --bImage5: something;
+   --bImage6: something;
+   --bImage7: something;
+   --bImage8: something;
+} */   /* THEY ARE DEFINED IN style ATRIBUTE OF SECTION TAB */
+
+
+
+header section div {
+   /* background-image: var(--bImage12); */
+   width: 100%;
+   height: 100%;
+   background-repeat: no-repeat;
+   background-attachment: local;
+   background-size: 100% auto;
+   background-position: 50% 50%;
+}
+
+header section {
+   height: 100%;
+   
+   border: tomato solid 4px;
+}
+
+
+header section div::after {
+   content: "";
+   display: block;
+   width: 100%;
+   height: 100%;
+   background-repeat: no-repeat;
+   background-attachment: local;
+   background-size: 108%;
+   background-position: 50% 50%;
+   z-index: 200;
+   background-size: 100% auto;
+
+   background-image: var(--bImage28);
+
+   animation-name: opacityAnim;
+   animation-duration: 10s;
+   animation-timing-function: ease-in;
+   animation-fill-mode: forwards;
+   animation-play-state: running;
+   animation-iteration-count: infinite;
+   animation-direction: alternate-reverse;
+   animation-delay: 2s;
+}
+
+header section div.image-1::after {
+   background-image: var(--bImage16);
+}
+header section div.image-2::after {
+   background-image: var(--bImage17);
+}
+header section div.image-3::after {
+   background-image: var(--bImage18);
+}
+header section div.image-4::after {
+   background-image: var(--bImage19);
+}
+header section div.image-5::after {
+   background-image: var(--bImage20);
+}
+header section div.image-6::after {
+   background-image: var(--bImage21);
+}
+header section div.image-7::after {
+   background-image: var(--bImage22);
+}
+header section div.image-8::after {
+   background-image: var(--bImage23);
+}
+header section div.image-9::after {
+   background-image: var(--bImage24);
+}
+header section div.image-10::after {
+   background-image: var(--bImage25);
+}
+header section div.image-11::after {
+   background-image: var(--bImage26);
+}
+header section div.image-12::after {
+   background-image: var(--bImage27);
+}
+header section div.image-13::after {
+   background-image: var(--bImage28);
+}
+header section div.image-14::after {
+   background-image: var(--bImage29);
+}
+header section div.image-15::after {
+   background-image: var(--bImage30);
+}
+
+
+
+@keyframes opacityAnim {
+   from {
+      opacity: 1;
+   }
+   to {
+      opacity: 0;
+   }
+}
