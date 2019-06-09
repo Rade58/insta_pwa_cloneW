@@ -10,52 +10,106 @@ header section div::after {
     z-index: 200;
     background-size: auto 108%;
  
-    background-image: var(--bImage5);
+    background-image: var(--bImage40);
  
     animation-name: opacityAnim;
     animation-duration: 10s;
-    animation-timing-function: ease-in;
+    animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
     animation-play-state: running;
     animation-iteration-count: infinite;
     animation-direction: alternate-reverse;
  }
  
- header section div.image-1::after {
-    background-image: var(--bImage16);
+ header section div.image-30::after {
+    background-image: var(--bImage30);
  }
- header section div.image-2::after {
-    background-image: var(--bImage17);
+ header section div.image-31::after {
+    background-image: var(--bImage31);
  }
- header section div.image-3::after {
-    background-image: var(--bImage18);
+ header section div.image-32::after {
+    background-image: var(--bImage32);
  }
- header section div.image-4::after {
-    background-image: var(--bImage19);
+ header section div.image-33::after {
+    background-image: var(--bImage33);
  }
- header section div.image-5::after {
-    background-image: var(--bImage20);
+ header section div.image-34::after {
+    background-image: var(--bImage34);
  }
- header section div.image-6::after {
-    background-image: var(--bImage21);
+ header section div.image-34::after {
+    background-image: var(--bImage35);
  }
- header section div.image-7::after {
-    background-image: var(--bImage22);
+ header section div.image-36::after {
+    background-image: var(--bImage36);
  }
- header section div.image-8::after {
-    background-image: var(--bImage23);
+ header section div.image-37::after {
+    background-image: var(--bImage37);
  }
- header section div.image-9::after {
-    background-image: var(--bImage24);
+ header section div.image-38::after {
+    background-image: var(--bImage38);
  }
- header section div.image-10::after {
-    background-image: var(--bImage25);
+ header section div.image-39::after{
+    background-image: var(--bImage39);
  }
- header section div.image-11::after {
-    background-image: var(--bImage26);
+ header section div.image-40::after {
+    background-image: var(--bImage40);
  }
- header section div.image-12::after {
-    background-image: var(--bImage27);
+ header section div.image-41::after {
+    background-image: var(--bImage41);
+ }
+ header section div.image-42::after {
+    background-image: var(--bImage42);
+ }
+ header section div.image-43::after {
+    background-image: var(--bImage43);
+ }
+ header section div.image-44::after {
+    background-image: var(--bImage44);
+ }
+ header section div.image-45::after {
+    background-image: var(--bImage45);
+ }
+ header section div.image-46::after {
+    background-image: var(--bImage46);
+ }
+ header section div.image-47::after {
+    background-image: var(--bImage47);
+ }
+ header section div.image-48::after {
+    background-image: var(--bImage48);
+ }
+ header section div.image-49::after {
+    background-image: var(--bImage49);
+ }
+ header section div.image-50::after {
+    background-image: var(--bImage50);
+ }
+ header section div.image-51::after {
+    background-image: var(--bImage51);
+ }
+ header section div.image-52::after {
+    background-image: var(--bImage52);
+ }
+ header section div.image-53::after {
+    background-image: var(--bImage53);
+ }
+ header section div.image-54::after {
+    background-image: var(--bImage54);
+ }
+ header section div.image-55::after {
+    background-image: var(--bImage55);
+ }
+ header section div.image-56::after {
+    background-image: var(--bImage56);
+ }
+ header section div.image-57::after {
+    background-image: var(--bImage57);
+ }
+ header section div.image-58::after {
+    background-image: var(--bImage58);
+ }
+ header section div.image-59::after {
+    background-image: var(--bImage59);
  }
  
  

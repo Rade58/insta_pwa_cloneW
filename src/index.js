@@ -20,9 +20,14 @@ const layoutHtml = `
 
 root.innerHTML = layoutHtml;
 
-const background_header_animation = import('./header_background_animation')
+const background_header_animation = 
+import(/* webpackChunkName: "headerBimageAnim" */
+    /* webpackMode: "lazy" */
+    /* webpackPrefetch: true */
+    './header_background_animation'
+)
 .then(function(modul){
-    modul.default(16, 14);
+    modul.default(30, 30);
 })
 
 

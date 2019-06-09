@@ -232,17 +232,18 @@ const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOp
         };
 
         const state = {
-            currentClass: 1,
+            currentClass: stringAndArraysVariableStyle.quantityOpacity + stringAndArraysVariableStyle.quantityNormal - 1,
             iterationGo: false,
-            iteration: 1
+            iteration: stringAndArraysVariableStyle.quantityOpacity + stringAndArraysVariableStyle.quantityNormal - 1,
+            opacityAnim: true
         }
 
         const opacityClassChanger = function(element){
             // console.log(ev.currentTarget)
             element.className = ""
             element.classList.add(`image-${state.currentClass}`)
-            state.currentClass += 1;
-            if(state.currentClass === quantityOpacity) state.currentClass = 1;
+            state.currentClass -= 1;
+            if(state.currentClass ===  stringAndArraysVariableStyle.quantityNormal) state.currentClass = stringAndArraysVariableStyle.quantityOpacity + stringAndArraysVariableStyle.quantityNormal - 1;
 
         }
 
@@ -277,6 +278,9 @@ const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOp
 
 // ARGUMENTS FOR NEXT FUNCYION ARE,             NUMBER OF IMAGES INSIDE src/images/normal
 //                                              NUMBER OF IMAGES INSIDE src/images/opacity
-    
+
+// FOR THE CONVINIENCE ADD SAME AMOUNT OF IMAGES IN BOTH FOLDER
+// NAMES MUST BE IN FORMAT image-{number}.jpg
+
 
 export default headerImagesAnimation;
