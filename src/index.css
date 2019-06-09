@@ -23,7 +23,7 @@
 
 /* helping border styles */
 header, main, footer {
-    border: olive solid 0px;
+    border: olive solid 1px;
 }
 
 /**/
@@ -45,3 +45,12 @@ footer {
 
 /* ------------------------overlaping background images in header----------------------- */
 
+
+/* MONSERAT I LORA FONT, I WANT TO USE THEM */
+
+.monseratBlahLora {
+
+    font-family: 'Lora', serif;
+    font-family: 'Montserrat', sans-serif;
+
+}

@@ -1,4 +1,3 @@
-import './header.css';
 import './header_background_animation.css';
 
 // function that makes two arrays of image urls (USING require)

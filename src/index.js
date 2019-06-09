@@ -1,5 +1,6 @@
 // import pwaFunc from './pwa';
 import './index.css';
+import './header.css';
 // import './header.css';
 
 
@@ -12,7 +13,12 @@ const layoutHtml = `
     <nav></nav>
         <section class="heder_animation">
             <div id="bAnim"></div>
-            <div class="overlap">Award winning web design and development company located in Belgrade.</div>
+            <div class="overlap">
+                <h1>Rade, Web Developer from Belgrade, turning coffee into software, since 2019.</h1>
+            </div>
+            <div class="crossed-card">
+                <a href="https://github.com/Rade58">github</a>
+            </div>
         </section>
     </header>
     <main></main>
