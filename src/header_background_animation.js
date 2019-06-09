@@ -104,7 +104,7 @@ const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOp
 
     passAllVariablesToBackgroundVar(
         stringAndArraysVariableStyle.arrayNormal,
-        document.querySelector('header section div')
+        document.querySelector('header section div#bAnim')
     );
 
 
@@ -145,7 +145,7 @@ const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOp
 
         const makeStyleStringAndArray = () => {
         
-            let styleString = document.querySelector('header section div').getAttribute('style');
+            let styleString = document.querySelector('header section div#bAnim').getAttribute('style');
 
             // console.log(styleString.match(regSec))
 
@@ -226,7 +226,7 @@ const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOp
             let backgroundImageStyle = backgroundImageStyleNewOrder();
 
 
-            document.querySelector('header section div').style.backgroundImage = backgroundImageStyle;
+            document.querySelector('header section div#bAnim').style.backgroundImage = backgroundImageStyle;
             
             
         };
@@ -249,14 +249,14 @@ const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOp
 
         // opacityClassChanger(document.querySelector('header section div'));
         
-        document.querySelector('header section div').addEventListener('animationiteration', function(ev){
+        document.querySelector('header section div#bAnim').addEventListener('animationiteration', function(ev){
         
             if(state.iteration%2){
                 changeBackgroundStyleSentance()
             }
 
             if(!(state.iteration%2)){
-                opacityClassChanger(document.querySelector('header section div'))
+                opacityClassChanger(document.querySelector('header section div#bAnim'))
             }
             state.iteration++
             

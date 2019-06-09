@@ -23,7 +23,7 @@
 
 /* helping border styles */
 header, main, footer {
-    border: olive solid 2px;
+    border: olive solid 0px;
 }
 
 /**/

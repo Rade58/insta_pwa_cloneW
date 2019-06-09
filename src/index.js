@@ -11,7 +11,8 @@ const layoutHtml = `
     <header>
     <nav></nav>
         <section class="heder_animation">
-            <div></div>
+            <div id="bAnim"></div>
+            <div class="overlap">Award winning web design and development company located in Belgrade.</div>
         </section>
     </header>
     <main></main>
