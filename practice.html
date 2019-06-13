@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <header></header>
+
+    <div class="elem">element</div>
+
+    <style>
+    
+        div.elem {
+            font-size: 1rem;
+            background-color: thistle;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            width: 50vw;
+            margin: 200px auto;
+            position: relative;
+            /* transform: translate(-50%, -50%); */
+
+            
+
+        }
+
+        div.elem::after {
+            content: "element";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: tomato;
+            width: 0%;
+            display: inline-block;
+            overflow: hidden;
+            text-shadow: 3px 3px 3px olive;
+
+            transition-property: width;
+            transition-duration: 3s;
+
+            transition-timing-function: ease-out;
+        }
+
+        div.elem:hover::after {
+            width: 100%;
+        }
+
+    </style>
+
+</body>
+</html>

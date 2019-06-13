@@ -1,6 +1,8 @@
 // import pwaFunc from './pwa';
 import './index.css';
 import './header.css';
+import './for_copy/captainicon.css';
+import './nav.css';
 // import './header.css';
 
 
@@ -9,15 +11,22 @@ import './header.css';
 
 const root = document.querySelector('#app')
 const layoutHtml = `
+    <nav>
+        
+        <div data-text="animated logo goes here"></div>
+    
+        <div><a href="#"></a></div>
+        <div><a href="#"></a></div>
+        <div><a href="#"></a></div>
+    </nav>
     <header>
-    <nav></nav>
         <section class="heder_animation">
             <div id="bAnim"></div>
             <div class="overlap">
-                <h1>Rade, Web Developer from Belgrade, turning coffee into software, since 2019.</h1>
+                <h1>Rade, Web Developer, turning coffee into software, with passion.</h1>
             </div>
             <div class="crossed-card">
-                <a href="https://github.com/Rade58">github</a>
+                <a href="https://github.com/Rade58"><span class="captainicon icon-129"></span> <span class="material-icons md-48"></span></a>
             </div>
         </section>
     </header>

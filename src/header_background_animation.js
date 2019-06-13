@@ -4,6 +4,8 @@ import './header_background_animation.css';
 
 const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOpacityAnimation){
 
+    // TRY USING Promise.all HERE
+
     const makeImageArrays = (quantityNormal, quantityOpacity) => {
         const normalArray = new Array();
         const opacityArray = new Array();
