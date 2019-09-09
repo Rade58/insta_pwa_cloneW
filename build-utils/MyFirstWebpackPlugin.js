@@ -8,7 +8,6 @@ class MyFirstWebpackPlugin {
             console.log(stats);
 
             debugger;
-
             //
             callback();
 
