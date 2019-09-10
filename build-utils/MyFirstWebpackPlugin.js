@@ -4,11 +4,16 @@ class MyFirstWebpackPlugin {
 
         compiler.hooks.done.tapAsync("MyFirstWebpackPlugin", (stats, callback) => {
 
-            //
-            console.log(stats);
+            const assetNames = []
 
-            debugger;
-            //
+            for(let assetName in stats.compilation.assets){
+
+                assetNames.push(assetName);
+
+            }
+
+            debugger; // ON JE JOS TU, UDJI U DEBUG CONSOLE I PROCITAJ
+
             callback();
 
         })
