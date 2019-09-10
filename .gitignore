@@ -1,3 +1,5 @@
 /node_modules
 /src/images
 /dist
+yarn.lock
+package.json.lock
