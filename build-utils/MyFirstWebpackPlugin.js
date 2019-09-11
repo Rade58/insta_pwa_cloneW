@@ -12,12 +12,68 @@ class MyFirstWebpackPlugin {
 
             }
 
-            debugger; // ON JE JOS TU, UDJI U DEBUG CONSOLE I PROCITAJ
+            // debugger;
 
             callback();
 
         })
+
+
+        compiler.hooks.compilation.tap('MyFirstWebpackPlugin', (compilation, params) => {
+
+            // compilation.hooks.seal.tap('MyFirstWebpackPlugin', () => {   // OVO JE PRESLO U CODE NOVOG PLUGIN-A
+                
+                // EVO OVDE UPOTREBLJAVAM COMPILATION, ALI IZ PLUGIN-A
+
+                // compilation
+
+
+                let compilationBlah = new MyFirstCompilationWebpackPlugin().apply(compilation)
+
+                // debugger;
+
+
+            // })
+
+        })
+
+        
+        compiler.hooks.normalModuleFactory.tap('MyFirstWebpackPlugin', normalModuleFactory => {
+
+            normalModuleFactory.hooks.beforeResolve.tapAsync('MyFirstWebpackPlugin', (data, callback) => {
+
+                // debugger;
+
+                callback()
+
+            })
+
+        })
+
+
     }
 }
+
+// EVO OVDE GA DEFINISEM
+
+class MyFirstCompilationWebpackPlugin {
+
+    
+
+    apply(compilation){
+
+        compilation.hooks.seal.tap('MyFirstWebpackPlugin', () => {
+            compilation;
+            // debugger;
+
+        })
+
+
+    }
+
+    
+
+}
+
 
 module.exports = MyFirstWebpackPlugin;
