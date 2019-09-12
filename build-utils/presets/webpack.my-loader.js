@@ -2,16 +2,15 @@
 
 module.exports = () => ({
     resolveLoader: {
-        alias: {
-            "my-loader": require.resolve('../my-loader.js')
-        }
-
+        "aliase": require.resolve('../my-loader.js')
     },
 
     module: {
+
         rules: [
-            {test: /\.js$/, use: "my-loader"}    // SAD JE js
+            {test: /\.js$/, use: "my-loader"}
         ]
 
     }
+
 })

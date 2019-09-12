@@ -1,12 +1,20 @@
 // build-utils\my-loader.js
 
-module.exports = source => {
+module.exports = loader;  
 
-    // EVO ALTER-OVACU source ZA SVAKI CSS MODUL
 
-    // source += '; console.log("blah");'
+function loader(source){
 
-    // console.log(this);
+
+    if(
+    this.resource === 
+    "C:\\Users\\Rade\\Documents\\PROGRAMIRANJE\\vezbe_za_web_aplikacije\\webpack larkin\\projekti\\inst_pwa_clone_w\\src\\header_background_animation.js"
+    )
+    {
+
+        source+= `; console.log('blah')`
+
+    }
 
     debugger;
     

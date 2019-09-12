@@ -4,7 +4,6 @@ const webpackMerge = require('webpack-merge');
 const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
 const addMergedPresetsConfigs = require('./build-utils/loadPresets');
 
-// UVOZIM MOJ PRVI PLUGIN
 const MyFirstWebpackPlugin = require('./build-utils/MyFirstWebpackPlugin')
 
 module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
@@ -20,17 +19,27 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
             },
             plugins: [
                 new webpack.ProgressPlugin(),
-                // EVO GA OVDE INSTATICIZIRAM
                 new MyFirstWebpackPlugin()
             ],
+
+            resolveLoader: {        // EVO DODAO SAM OVO
+                alias: {
+                    // "my-loader": require.resolve('../my-loader.js')   // MEDJUTIM OVAJ PATH VISE NE VALJA
+                    "my-loader": require.resolve('./build-utils/my-loader.js')
+                }
+        
+            },
+
             module: {
                 rules: [
                     {
                         test: /\.(jpe?g|png|svg)$/,
                         use: [
-                            {loader: "url-loader", options: {limit: 5000}}
+                            {loader: "url-loader", options: {limit: 5000}},
                         ]
                     },
+
+                    {test: /\.js$/, use: "my-loader"}// DODAO SAM OVO
                     
                 ]
             }
