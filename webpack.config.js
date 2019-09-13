@@ -6,6 +6,9 @@ const addMergedPresetsConfigs = require('./build-utils/loadPresets');
 
 const MyFirstWebpackPlugin = require('./build-utils/MyFirstWebpackPlugin')
 
+//
+const SwLibWebpackPlugin = require('./build-utils/SwLibWebpackPlugin');
+
 module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
 
     return webpackMerge(
@@ -19,7 +22,13 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
             },
             plugins: [
                 new webpack.ProgressPlugin(),
-                new MyFirstWebpackPlugin()
+                new MyFirstWebpackPlugin(),
+
+                new SwLibWebpackPlugin(
+                    '/src/sw_libraries/blah_two.js',
+                    'service_worker_libraries',
+                    __dirname
+                )
             ],
 
             resolveLoader: {        // EVO DODAO SAM OVO

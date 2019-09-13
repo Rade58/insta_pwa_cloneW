@@ -1,0 +1,1 @@
+const stateOfApp = "state of app";

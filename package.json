@@ -36,7 +36,8 @@
     "dev:my-loader:debug": "npm run dev:debug -- --env.presets my-loader",
     "dev:my-loader": "npm run dev -- --env.presets my-loader",
     "prod:my-loader": "npm run prod -- --env.presets my-loader",
-    "prod:my-loader:debug": "npm run prod:debug -- --env.presets my-loader"
+    "prod:my-loader:debug": "npm run prod:debug -- --env.presets my-loader",
+    "dev:debug:multi": "npm run dev:debug -- --env.presets multi"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^3.0.0",
