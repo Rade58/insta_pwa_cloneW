@@ -1,13 +1,15 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 
-const modeConfig = env => require(`./build-utils/webpack.${env}`)(env);
+const modeConfig = (mode, mainConfigPath) => require(`./build-utils/webpack.${mode}`)(mode, mainConfigPath);
 const addMergedPresetsConfigs = require('./build-utils/loadPresets');
 
 const MyFirstWebpackPlugin = require('./build-utils/MyFirstWebpackPlugin')
 
+const mainConfigPath = __dirname;
+
 //
-const SwLibWebpackPlugin = require('./build-utils/SwLibWebpackPlugin');
+// const SwLibWebpackPlugin = require('./build-utils/SwLibWebpackPlugin');
 
 module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
 
@@ -23,12 +25,6 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
             plugins: [
                 new webpack.ProgressPlugin(),
                 new MyFirstWebpackPlugin(),
-
-                new SwLibWebpackPlugin(
-                    '/src/sw_libraries/blah_two.js',
-                    'service_worker_libraries',
-                    __dirname
-                )
             ],
 
             resolveLoader: {        // EVO DODAO SAM OVO
@@ -53,7 +49,7 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
                 ]
             }
         },
-        modeConfig(mode),
-        addMergedPresetsConfigs({presets})
+        modeConfig(mode, mainConfigPath),
+        addMergedPresetsConfigs({presets}, mainConfigPath)
     )
 }
