@@ -1,3 +1,5 @@
+const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const SwLibWebpackPlugin = require('./SwLibWebpackPlugin');
@@ -20,12 +22,9 @@ module.exports = (mode, mainConfigPath) => ({
         }),
 
         new SwLibWebpackPlugin(
-            '///src/.//./sw_libraries///blah_two.js',
-            'service_worker_libraries_outputed',
-            __dirname,
-            'sw_libraries',
-            mainConfigPath
-
+            'src/sw_libraries',
+            mainConfigPath,
+            path.resolve('')
         )
     ]
 
