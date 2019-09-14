@@ -23,8 +23,6 @@ module.exports = (mode, mainConfigPath) => ({
 
         new SwLibWebpackPlugin(
             'src/sw_libraries',
-            mainConfigPath,
-            path.resolve('')
         )
     ]
 
