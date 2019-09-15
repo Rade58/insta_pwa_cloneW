@@ -41,10 +41,10 @@
     "dev:debug:multi": "npm run dev:debug -- --env.presets multi",
 
     "dev:multi:inject-manifest": "npm run dev:multi -- --env.presets inject_manifest",
-    "dev:multi:inject-manifest:sw_libs": "npm run dev:multi:inject-manifest -- --env.presets sw_libs",
-    
+    "dev:multi:inject-manifest:sw-libs": "npm run dev:multi:inject-manifest -- --env.presets sw_libs",
+
     "dev:debug:multi:inject-manifest": "npm run dev:debug:multi -- --env.presets inject_manifest",
-    "dev:debug:multi:inject-manifest:sw_libs": "npm run dev:debug:multi:inject-manifest -- --env.presets sw_libs"
+    "dev:debug:multi:inject-manifest:sw-libs": "npm run dev:debug:multi:inject-manifest -- --env.presets sw_libs"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^3.0.0",

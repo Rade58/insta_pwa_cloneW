@@ -5,6 +5,8 @@ import './for_copy/captainicon.css';
 import './nav.css';
 // import './header.css';
 
+import registerServiceWorker from './pwa_rel/service-worker-reg';
+
 
 
 // pwaFunc();
@@ -37,16 +39,18 @@ const layoutHtml = `
 root.innerHTML = layoutHtml;
 
 const background_header_animation = 
-import(/* webpackChunkName: "headerBimageAnim" */
-    /* webpackMode: "lazy" */
-    /* webpackPrefetch: true */
-    './header_background_animation'
-)
-.then(function(modul){
-    modul.default(30, 30);
-})
+//                import(/* webpackChunkName: "headerBimageAnim" */
+//                    /* webpackMode: "lazy" */
+//                    /* webpackPrefetch: true */
+  //                  './header_background_animation'
+    //            )
+      //          .then(function(modul){
+        //            modul.default(30, 30);
+          //      })
 
 
 
+
+registerServiceWorker();
 
 

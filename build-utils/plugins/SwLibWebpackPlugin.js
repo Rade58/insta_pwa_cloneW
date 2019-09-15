@@ -147,7 +147,7 @@ class SwLibWebpackPlugin {
         // U SUSTINI, ZELIM DA SE PRILIKOM INSTANTICIRANJA PLUGIN-A, NJEMU KAO ARGUMENTI DODAJU
         // - RELATIVE PATH FOLDER-A, U KOJEM SE NALAZE BIBLIOTEKE ZA SERVICE WORKER-A 
 
-    constructor(libFolderRelativePath, swPathInDist){
+    constructor(libFolderRelativePath, utilityFolderRelativePath, swPathInDist){
         //DAKLE KORISNIK CE U SLUCAJU MOG PLUGIN-A MORATI DA UNESE TACAN PATH DO FOLDER-A
         // U KOJI JE STAVIO LIBRARIES, KOJE ZELI DA KORISTI U SERVICE WORKER-U
 
@@ -157,11 +157,14 @@ class SwLibWebpackPlugin {
                                                                 // TREBA DA IMAM NA UMU DA REFERENCU IMAENA
                                                                 // ONOG SERVICE WORKER-A KOJE GENERISEM
                                                                 // WORKBOX-OM, TREBA DA OVDE BUDE REFERENCED
+
+        this.utilityFolderRelativePath = utilityFolderRelativePath;
+                                                                
     }
 
     apply(compiler){
 
-        const fsMem = new MemoryFileSystem(); // OVO SE MORA INSTATICIRATI DA BI SE ONDA NAD INSTANCOM KORISTILE RAZNE METODE
+        // const fsMem = new MemoryFileSystem(); // OVO SE MORA INSTATICIRATI DA BI SE ONDA NAD INSTANCOM KORISTILE RAZNE METODE
 
         
         // OVAJ HOOK SE IZVRSAVA PRE SAMOG EMITOVANJA 
@@ -178,7 +181,9 @@ class SwLibWebpackPlugin {
 
             // KONKRETNO insertScript() NA POCETKU, SA PATH-OVIMA DO ONIH FAJLOVA KOJE TREBAM DA DODAM KAO ASSETS
 
-            const relAbsFilePathsAndScriptPart = {};
+            const relAbsFilePathsAndScriptPartLib = {};
+            
+            const relAbsFilePathsAndScriptPartUtil = {};
 
             
 
@@ -186,17 +191,19 @@ class SwLibWebpackPlugin {
             
                 const projectPath = path.resolve();
 
-                const dirname = __dirname;
+                // const dirname = __dirname;
 
                 const absoluteLibPath = path.join(projectPath, this.libFolderRelativePath);
+                
+                // debugger;
+
+                const filenamesArrayLib = fs.readdirSync(absoluteLibPath);
+
+                
 
                 // debugger;
 
-                const filenamesArray = fs.readdirSync(absoluteLibPath);
-
-                // debugger;
-
-                for(let filename of filenamesArray){
+                for(let filename of filenamesArrayLib){
 
                     let relativePath = path.join(
                         
@@ -214,7 +221,7 @@ class SwLibWebpackPlugin {
                     )
 
 
-                    relAbsFilePathsAndScriptPart[relativePath] =  {         // GORNJI PATH ZADA JEM KAO IMAE PROPERTIJA GORNJEG OBJEKTA
+                    relAbsFilePathsAndScriptPartLib[relativePath] =  {         // GORNJI PATH ZADA JEM KAO IMAE PROPERTIJA GORNJEG OBJEKTA
                     
                         abs,
 
@@ -230,26 +237,92 @@ class SwLibWebpackPlugin {
 
                         source(){
 
-                            return relAbsFilePathsAndScriptPart[relativePath].fileContent
+                            return relAbsFilePathsAndScriptPartLib[relativePath].fileContent
 
                         },
 
                         size(){
 
-                            return relAbsFilePathsAndScriptPart[relativePath].fileContent.length
+                            return relAbsFilePathsAndScriptPartLib[relativePath].fileContent.length
                         }
 
                     }
 
                     let swFileContent = compilation.assets[this.swPathInDist].source();
 
-                    let swFileContentAddition = relAbsFilePathsAndScriptPart[relativePath].scriptPart + swFileContent;
+                    let swFileContentAddition = relAbsFilePathsAndScriptPartLib[relativePath].scriptPart + swFileContent;
                     let size = swFileContentAddition.length;
 
 
                     compilation.assets[this.swPathInDist].source = () => swFileContentAddition;
                     compilation.assets[this.swPathInDist].size = () => size;
                     
+                    
+                    // debugger;
+
+                }
+
+
+                const absoluteUtilPath = path.join(projectPath, this.utilityFolderRelativePath);
+
+                const filenamesArrayUtil = fs.readdirSync(absoluteUtilPath);
+
+
+                for(let filenameUtil of filenamesArrayUtil){
+
+                    let relativePathUtil = path.join(
+                        
+                        path.basename(this.utilityFolderRelativePath),          // UZECE SAMO ONO POSLEDNJE OD PATHA     
+                                                                            // (NAIME AKO JE '/foo/bar'  ONDA CE RETURNED BITI   'bar'   )
+                                                                            // OVO RADIM DA BI U dist FOLDERU PATH GDE CE BITI sw LIBRARIES
+                        filenameUtil                                            // SAMO DUBOKO U JEDNOM FOLDERU U dist-u                                 
+                    );
+
+
+                    let absUtil = require.resolve(                           //FORMIRAM APSOLUTNI PATH FAJLA
+                                
+                        path.join(absoluteUtilPath, filenameUtil)
+
+                    )
+
+
+                    relAbsFilePathsAndScriptPartUtil[relativePathUtil] =  {         // GORNJI PATH ZADA JEM KAO IMAE PROPERTIJA GORNJEG OBJEKTA
+                    
+                        absUtil,
+
+                        scriptPart: `importScripts("${relativePathUtil.replace(/\\/ig, '/')}");\n`,      // ZADAJEM ONO STO CE SE DODATI SERVICE WORKER-U
+                        
+                        fileContent: fs.readFileSync(absUtil, {encoding: 'utf8'}) 
+
+                    }
+
+
+                    
+                    compilation.assets[relativePathUtil.replace(/\\/, '/')] = {
+
+                        source(){
+
+                            return relAbsFilePathsAndScriptPartUtil[relativePathUtil].fileContent
+
+                        },
+
+                        size(){
+
+                            return relAbsFilePathsAndScriptPartUtil[relativePathUtil].fileContent.length
+                        }
+
+                    }
+
+                    let swFileContentUtil = compilation.assets[this.swPathInDist].source();
+
+                    let swFileContentAddition = relAbsFilePathsAndScriptPartUtil[relativePathUtil].scriptPart + swFileContentUtil;
+                    let size = swFileContentAddition.length;
+
+
+                    compilation.assets[this.swPathInDist].source = () => swFileContentAddition;
+                    compilation.assets[this.swPathInDist].size = () => size;
+                    
+                    // debugger;
 
                 }
 
