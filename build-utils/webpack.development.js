@@ -2,7 +2,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const SwLibWebpackPlugin = require('./SwLibWebpackPlugin');
 
 module.exports = (mode, mainConfigPath) => ({
     output: {
@@ -21,9 +20,7 @@ module.exports = (mode, mainConfigPath) => ({
             template: 'src/templates/fallback_offline.html',
         }),
 
-        new SwLibWebpackPlugin(
-            'src/sw_libraries', 
-        )
+    
     ]
 
 })
