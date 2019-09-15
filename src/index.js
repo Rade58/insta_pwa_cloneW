@@ -7,11 +7,19 @@ import './nav.css';
 
 import registerServiceWorker from './pwa_rel/service-worker-reg';
 
+registerServiceWorker()
+.then(registration => {
+
+    console.log(registration)
+
+})
+
+console.log('blah')
 
 
 // pwaFunc();
 
-const root = document.querySelector('#app')
+/* const root = document.querySelector('#app')
 const layoutHtml = `
     <nav>
         
@@ -36,9 +44,9 @@ const layoutHtml = `
     <footer></footer>
 `;
 
-root.innerHTML = layoutHtml;
+root.innerHTML = layoutHtml; */
 
-const background_header_animation = 
+// const background_header_animation = 
 //                import(/* webpackChunkName: "headerBimageAnim" */
 //                    /* webpackMode: "lazy" */
 //                    /* webpackPrefetch: true */
@@ -51,6 +59,6 @@ const background_header_animation =
 
 
 
-registerServiceWorker();
+
 
 

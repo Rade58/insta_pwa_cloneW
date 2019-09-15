@@ -284,4 +284,4 @@ const headerImagesAnimation = function(numberOfNormalImages, numberOfImagesForOp
 // NAMES MUST BE IN FORMAT image-{number}.jpg
 
 
-export default headerImagesAnimation;
+// export default headerImagesAnimation;

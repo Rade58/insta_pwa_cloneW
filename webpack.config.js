@@ -27,13 +27,13 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
                 new MyFirstWebpackPlugin(),
             ],
 
-            resolveLoader: {        // EVO DODAO SAM OVO
+            /* resolveLoader: {        // EVO DODAO SAM OVO
                 alias: {
                     // "my-loader": require.resolve('../my-loader.js')   // MEDJUTIM OVAJ PATH VISE NE VALJA
-                    "my-loader": require.resolve('./build-utils/my-loader.js')
+                    // "my-loader": require.resolve('./build-utils/my-loader.js')
                 }
         
-            },
+            }, */
 
             module: {
                 rules: [
@@ -44,7 +44,7 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
                         ]
                     },
 
-                    {test: /\.js$/, use: "my-loader"}// DODAO SAM OVO
+                    //{test: /\.js$/, use: "my-loader"}// DODAO SAM OVO
                     
                 ]
             }

@@ -1,6 +1,14 @@
 export default () => {
 
-    if('serviceWoker' in window.navigator){
+    let resolvement;
+
+    const prom = new Promise((resolve, reject) => {
+
+        resolvement = resolve;
+
+    })
+
+    if('serviceWorker' in window.navigator){
 
         window.addEventListener('load', async e => {
 
@@ -8,9 +16,14 @@ export default () => {
             
             console.log('**Service Worker is registered**', registration)
 
+            resolvement(registration)
 
         })
 
     }
+
+
+    return prom;
+
 
 }
