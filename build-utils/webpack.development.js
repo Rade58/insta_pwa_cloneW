@@ -22,7 +22,7 @@ module.exports = (mode, mainConfigPath) => ({
         }),
 
         new SwLibWebpackPlugin(
-            'src/sw_libraries',
+            'src/sw_libraries', 
         )
     ]
 
