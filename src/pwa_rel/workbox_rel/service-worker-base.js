@@ -26,9 +26,9 @@
 self.addEventListener('activate', e => {
 
     console.log(self.__precacheManifest);
-    // console.log(self.__webpackMode);
+    console.log(self.__webpackMode);
 
-    console.log({makeManifestWithoutIgnoresAndInsertToSelf, precacheManifest})
+    // console.log({makeManifestWithoutIgnoresAndInsertToSelf, precacheManifest})
 
 
 })

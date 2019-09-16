@@ -6,7 +6,7 @@ const addMergedPresetsConfigs = require('./build-utils/loadPresets');
 
 const MyFirstWebpackPlugin = require('./build-utils/MyFirstWebpackPlugin')
 
-const mainConfigPath = __dirname;
+// const mainConfigPath = __dirname;
 
 //
 // const SwLibWebpackPlugin = require('./build-utils/SwLibWebpackPlugin');
@@ -49,7 +49,7 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
                 ]
             }
         },
-        modeConfig(mode, mainConfigPath),
-        addMergedPresetsConfigs({presets}, mainConfigPath)
+        modeConfig(mode),
+        addMergedPresetsConfigs({presets, mode})
     )
 }
