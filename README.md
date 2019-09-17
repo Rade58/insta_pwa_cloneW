@@ -1,14 +1,16 @@
-:exclamation::exclamation:work in progress:exclamation::exclamation: 
+# REPOSITORY MADE JUST FOR PRACTICING WEBPACK (MESS, NOTHING TO SEE HERE)
+
+made JUST FOR practicing pwa techologies and setting up the right Webpack configuration with many presets
+
+## html-webpack-plugin GITHUB PAGE HAS A LIST OF USEFULL PLUGINS
+
+[LIST](https://github.com/jantimon/html-webpack-plugin#plugins)
+
+## REMINDER
 
 reminder:
 
-- (need to shorten script names when i finsh defining all necessary presets)
-
-# App made for practicing pwa techologies and setting up the right Webpack configuration with many presets
-
-Probably, going to use this configuration for my portfolio
-
-## Bundled with webpack
+- (need to shorten script (with composition) (package.json) names when i finsh defining all necessary presets)
 
 ### Webpack configuration is made to have multiple entry points and multiple outputs, but single enaty and output should be also available as an option
 
@@ -36,9 +38,9 @@ multi entries and outputs
 
 - yarn prod:multi_compress_serve
 
-## FOR SERVICE WORKER I'M USING "serviceworker-webpack-plugin", AS A PRESET CONFIGURATION
+## FOR SERVICE WORKER
 
-["serviceworker-webpack-plugin"](https://www.npmjs.com/package/serviceworker-webpack-plugin)
+["serviceworker-webpack-plugin"](https://www.npmjs.com/package/serviceworker-webpack-plugin) (NOT USING)
 
 [git repo](https://github.com/oliviertassinari/serviceworker-webpack-plugin)
 
@@ -56,7 +58,7 @@ DEVELOPMENT SCRIPT IS EXECUTED WITH:
 
 - yarn dev:multi:serviceworker:pwamanifest
 
-## For generating (copying) favicon.png TO dist, 'copy-webpack-plugin' is used
+## For generating (copying) favicon.png TO dist, 'copy-webpack-plugin' (I'L LSTOP USING THIS PLUGIN) is used
 
 [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin)
 
