@@ -208,7 +208,7 @@ class SwLibWebpackPlugin {
         // const fsMem = new MemoryFileSystem(); // OVO SE MORA INSTATICIRATI DA BI SE ONDA NAD INSTANCOM KORISTILE RAZNE METODE
                                                  // ALI KAO STO SAM REKAO, MENI NECE TREBATI
 
-        
+        // OVO JE MOZDA NAJVAZNIJE ZA PLUGIN
         // OVAJ HOOK SE IZVRSAVA (ODNOSNO TRIGGER-UJE) PRE SAMOG EMITOVANJA (TO ZNACI DA CE SVI ASSET-I BITI DOSTUPNI ZA MOJE MANIPULISANJE)
         compiler.hooks.emit.tapAsync('SwLibWebpackPlugin', (compilation, callback) =>{      // NE ZABORAVI DA UVEK DODAS
                                                                                             // callback PARAMETAR
