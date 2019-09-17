@@ -1,6 +1,6 @@
 // DAKLE importScrip() KOJI UVOZI LIBRARY BICE STAVLJEN U OUTPUT FAJLU (dist/service-worker)
 
-// I MANIFEST CODE CE BITI UVEZEN SA ISTIM POZIVM importScript()
+// I MANIFEST CODE CE BITI UVEZEN SA ISTIM POZIVM importScrpt()
 
 // A TAJ SCRIPT, MANIFEST SA NABROJANIM URL-OVIMA CE ASSIGNOVATI TO      self.__precacheManifest
 
@@ -10,7 +10,7 @@
 // PITANJE SE POSTAVLJA KAKO DA EXCLUDE-UJEM ODREDJENI DIREKTORIJUM U dist-U FROM PRECACHING
 // PRILIKOM SETTING-A KONFIGURACIJE, TO MI NIJE USPELO
 
-// importScripts('/pwa_rel/sw_utility/makeManifestWithIgnoresAndInsertToSelf.js')   // U SUSTINI DEFINISAO SAM KOPIRANJE
+// importSc('/pwa_rel/sw_utility/makeManifestWithIgnoresAndInsertToSelf.js')   // U SUSTINI DEFINISAO SAM KOPIRANJE
                                                               // OVAKAVOG UTILITY FOLDER-A SA FUNKCIJAMA
                                                               // U dist
                                                               // ONE SE NALAZE NA ISTOM DIREKTORIJUMU
@@ -19,7 +19,7 @@
                                                               // copy-webpack-plugin
 
 // OVAJ, MOJ SCRIPT INSERT-UJE WEBPACK mode U self                                                          
-// importScripts('/webpack_rel/insertMode.js');                //  INSERTUJE GA KAO        self.__webpackMode
+// importScrts('/webpack_rel/insertMode.js');                //  INSERTUJE GA KAO        self.__webpackMode
 
 
 
@@ -73,7 +73,7 @@ const notForPrecachingDevelopment = [       // STO SE TICE DEVELOPMENT CODE-A, .
 
 // TRECI NIZ NEKA BUDEU REGEXP-OVI ZA ONE URL-OVE, KOJE BEZ OBZIRA NA WEBPACK MODE NE ZELI MDA PRECACHE-UJEM
 const notForPrecaching = [
-    /^\/?pages\/.+\.html$/,      // OVO JE SAMO U CILJU TESTIRANJE, ODNOSN OVEZBE KADA UMESTO OVOG ASSET-A ZELI MDA SERVE-UJEM OFFLINE FALLBACK (TAKO KADA ZAVRSIS TESTIRANJE MOZES DA COMMENT OUT)
+    // /^\/?help\/.+\.html$/,      // OVO JE SAMO U CILJU TESTIRANJE, ODNOSN OVEZBE KADA UMESTO OVOG ASSET-A ZELI MDA SERVE-UJEM OFFLINE FALLBACK (TAKO KADA ZAVRSIS TESTIRANJE MOZES DA COMMENT OUT)
     /^\/?icons/,                 
     /\.map$/
 ]
