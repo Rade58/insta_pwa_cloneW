@@ -209,7 +209,7 @@ class SwLibWebpackPlugin {
                                                  // ALI KAO STO SAM REKAO, MENI NECE TREBATI
 
         
-        // OVAJ HOOK SE IZVRSAVA PRE SAMOG EMITOVANJA (TO ZNACI DA CE SVI ASSET-I BITI DOSTUPNI ZA MOJE MANIPULISANJE)
+        // OVAJ HOOK SE IZVRSAVA (ODNOSNO TRIGGER-UJE) PRE SAMOG EMITOVANJA (TO ZNACI DA CE SVI ASSET-I BITI DOSTUPNI ZA MOJE MANIPULISANJE)
         compiler.hooks.emit.tapAsync('SwLibWebpackPlugin', (compilation, callback) =>{      // NE ZABORAVI DA UVEK DODAS
                                                                                             // callback PARAMETAR
                                                                                             // KOD tapAsync
@@ -218,8 +218,7 @@ class SwLibWebpackPlugin {
                                                                                             // POZIVAS GA NA KRAJU
                                                                                             // DA BI SE BUILD FINALIZIRAO (PREDPOSTAVLJAM)
             
-
-            // JA DAKLE ZELI MDA UZMEM serviceworker FAJL IZ ASSET-A,  IDA MU DODAM NOVI CODE
+            // JA DAKLE ZELIM DA UZMEM serviceworker FAJL IZ ASSET-A,  IDA MU DODAM NOVI CODE
 
             // KONKRETNO insertScript() NA POCETKU, SA PATH-OVIMA DO ONIH FAJLOVA KOJE TREBAM DA DODAM KAO ASSETS
             // BIBLIOTEKA, I UTILITY-JA
@@ -236,6 +235,12 @@ class SwLibWebpackPlugin {
 
             let serviceWorkerSourceCodeSize;
 
+
+            // U SUSTINI PRVO ZELI MDA PRONADJEM importScripts KOJI JE POZVAN POSLEDJI U CODE-U
+            // KORISNIK BI TREBALO DA JE POZVAO impsotScripts NA POCETKU SVOG SERVICE WORKER-A
+
+            // STO SE TICE WORKBOX-A, ODNOSNO InjectManifest; importScripts() ZA PRECACHE MANIFEST FAJL I ZA
+            // WORKBOX LIBRARY, TREBA DA SE NLAZI NA SAMOM VRHU
 
             if(this.swPathInDist && typeof this.swPathInDist === "string"){
 
@@ -259,6 +264,9 @@ class SwLibWebpackPlugin {
                     return lastIndex;
                 }
 
+                // CITAM CODE IZ SERVICE WORKERA, SAMO JEDNOM NA POCETKU
+                // PRIMETIO SAM DA AKO VISE PUTA CITAM I REDEFINISEM STRINGIFIED CODE NEKOG FAJLA
+                // DA DOLAZI DO ERROR-A (ZATO GA CITAM NA POCETKU I KORISTICU STRING TOKOM CELOG OBIMA)
 
                 serviceWorkerSourceCode = compilation.assets[this.swPathInDist].source();
 
@@ -266,9 +274,13 @@ class SwLibWebpackPlugin {
 
                 let lastIndex = findLastIndex_of_insertScripts(serviceWorkerSourceCode)
 
-                // debugger;
 
                 try{
+
+                    // KAO STO SAM REKAO, PRVO ZELIM DA DEFINISEM DA SE WEBPACK-OV MODE INSERT-UJE U SERVICE WORKER THRED
+                    // NARAVNO ZA POCETAK SAM ORADI MSA STRINGOM, KOJEG SAM DOBIO
+                    // A KADA SVE OBAVIM, ODNOSNO DODAM SVASTA U TAJ STRING SERVICE WORKER CODEBASE-A, JA CU GA ONDA
+                    // 'REASSIGN-OVATI' SERVICE serviceWorkerSourceCode, ODNOSNO UPISACU GA NAZAD U SERVICE WORKER FAJL
 
                     if(this.mode && typeof this.mode === "string"){
 
@@ -312,7 +324,7 @@ class SwLibWebpackPlugin {
     
                         const absoluteUtilPath = path.join(projectPath, this.utilityFolderRelativePath);
     
-                        const filenamesArrayUtil = fs.readdirSync(absoluteUtilPath);    // CITAM SVE FAJLOVE IZ JEDNOG DIREKTORIJUMA
+                        const filenamesArrayUtil = fs.readdirSync(absoluteUtilPath);    // SADA CITAM SVE FAJLOVE IZ JEDNOG DIREKTORIJUMA
 
                                                                                         // DA BIH KROZ SVE TA IMANA FAJLOVA LOOP-OVAO
     
