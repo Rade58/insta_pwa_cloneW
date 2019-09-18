@@ -151,10 +151,19 @@ const fs = require('fs')
 /////
 
 
+///// SPECIJALNO ZA MODIFIKOVANJE PRECACHE MANIFEST-A, KORISTICU SLEDECI MODUL 
+
+const crypto = require('crypto');
+
+            // KORISTICU OVO DA BIH GENERISAO HASH, ODNOSNO HEX CODE OD STRINGOVANE PROCITANE SADRZINE
+            // WORKBOX PRECACHE MANIFEST FAJLA
+    // NISAM ULAZIO DUBLE U TO, KAKO SE GENERISU HASHEVI (U SUSTINI MENI TREBA HASH STRING OD 32 KARAKTERA
+    //                                                      KOJI CU GENERISATI OD STINGIFIKOVANE SADRZINE FAJLA) (PRECACHE MANIFEST FAJLA)
+    //        require('crypto').createHash('md5').update(STRING_TO_BE_HASHED).digest("hex")
+///////////////////////////////////////////////////////////////////////
+
 
 // KONACNO DEKLARISEM, MOJ PLUGIN
-
-
 
 class SwLibWebpackPlugin {
 
@@ -225,6 +234,82 @@ class SwLibWebpackPlugin {
 
             
             // DA SADA KONACNO SKRATIM PRICU I ODPOCNEM SA DEFINISANJEM CODE-A
+
+            ///////////////////////////////////////////////////////////////////////////////////
+            // WORKBOX RELATED:         PRONALAZENJE PRECACHE MANIFEST-A MEDJU ASSET-OVIMA
+
+            let precacheManifestRel;
+            
+            for(let assetPathName in compilation.assets){
+
+                let regExpMan = /[\W\w\d]*precache\-manifest\.[\W\w\d]+\.js$/;
+
+                if(regExpMan.test(assetPathName)){
+                    
+                    // DELJENJE PRONADJENE STRINGIFIED SADRZINE PRECACHE MANIFESTA NA DVA DELA DVA DELA
+                    // DA BIH IZMEDJU MOGAO UMETNUTI DEO KOJI CE SE TICATI SW LIBRARY-JA I UTILITY FAJLOVA
+
+                    let sourcecodeManString = compilation.assets[assetPathName].source();
+                    let sourcecodeManLength = compilation.assets[assetPathName].size();
+
+                    let lastBracketIndex = sourcecodeManString.lastIndexOf('}', sourcecodeManLength);
+
+                    let sourcecodeManStringLeft = sourcecodeManString.slice(0, lastBracketIndex + 1);
+                    let sourcecodeManStringRight = sourcecodeManString.slice(lastBracketIndex + 1, sourcecodeManLength);
+
+                    precacheManifestRel = {assetPathName, sourcecodeManStringLeft, sourcecodeManStringRight};
+
+                    // let heks = crypto.createHash('md5').update(sourcecodeManString).digest("hex");     //  TESTIRANJE crypto-A
+                    // ZAISTA SE KREIRA HEKS CODE OD 32 KARAKTER-A STO CE MENI BITI POTREBNO DA ZADAM ZA
+                    //              revision            PROPERTI PRECACHE MANIFEST OBJEKTA
+                    // debugger;
+                }
+
+                // 'precache-manifest.d5389158acac3b14c1cc4466d8b79f3f.js'
+            }
+
+
+            // ZELIM DA DEFINISEM I OBJEKAT, ODNOSNO SUBSTRING, KOJI CU DODADATI PRECACHE MANIFEST SOURCECODE-U 
+            // NE ZABORAVI DA SEGMENT TREBA DA SADRZI I ZARES ISPRED SEBE
+
+            // KORISTIM TRENUTNI fileContent PROPERTI (TO DEFINISEM ZA SVAKI OD ASSET-A (SW LIBRARY-JA I SW UTILITY-JA))
+
+            // KORISTIM OBJEKAT                 precacheManifestRel             KREIRAO SAM GA KADA SAM CITAO
+                                                                                // PRECACHE MANIFESTOV CODE
+            // O SADRZI SVE 'SEGMENTE' PRECACHE MANIFEST-A (SLUZICE MI DA OPET UPISEM PRECACHE MANIFEST U ASSETS)
+            // JA MU SADA SAMO DODAJEM STRINGIFIED OBJEKAT, NAMENJEN SVAKO MASSET-U, KOJI JE FAJLA SW LIBRARY-JA ILI SW UTILITY-JA
+
+            // OVA FUNKCIJA TREBA DA SE KORISTI U VISE OBIMA ZATO OSTAJE OVDE NA POCETKU
+            let precacheResourcesFunction = (sourceCodeString, path) => {
+                // ZAPAMTI PRAVIS STRINGIFIED OBJEKAT SA PRPERTIJIMA       url (RELATIVNIM NA TVOJ DOMEN (NEMA NIKAKV TACAKA))
+                //                                                         revision (HASH CODE ZA SADRZINU ASSET-A)
+
+                let hex = crypto.createHash('md5').update(sourceCodeString).digest("hex")
+
+
+                return `,\n{"url": "${path}", "revision": "${hex}"}`
+
+            };
+
+            let addToPrecacheSubstring = (precacheManifestRel, addition) => {
+
+                if(precacheManifestRel.substring){
+
+                    precacheManifestRel.substring += addition;
+
+                }else{
+
+                    precacheManifestRel.substring = addition;
+
+                }
+
+            }
+
+
+            // debugger;
+
+            /////////////////////////////////////////////////////////////////////////////
+
 
 
             const relAbsFilePathsAndScriptPartLib = {};
@@ -350,6 +435,7 @@ class SwLibWebpackPlugin {
                             let scriptPart = `importScripts("${relativePathUtil.replace(/\\/ig, '/')}");\n`;
 
                             let scriptPartLength = scriptPart.length;
+
                                 
                             relAbsFilePathsAndScriptPartUtil[relativePathUtil] =  {    // GORNJI PATH ZADAJEM KAO IME PROPERTIJA JEDNOG OD GORE DEKLARISANIH OBJEKATA
                                                                                             // OVAJ JE 'UTILITY RELATED'
@@ -384,7 +470,23 @@ class SwLibWebpackPlugin {
 
                             serviceWorkerSourceCode = relAbsFilePathsAndScriptPartUtil[relativePathUtil].scriptPart + serviceWorkerSourceCode;
                             serviceWorkerSourceCodeSize = serviceWorkerSourceCode.length + relAbsFilePathsAndScriptPartUtil[relativePathUtil].scriptPartLength;
-    
+                            
+
+                            // PRECACHE MANIFEST RELATED
+
+                            addToPrecacheSubstring(
+                                
+                                precacheManifestRel,                // OBJEKAT U KOJEM JE SVE VEZAN OZA PRECACHE MANIFEST
+                                
+                                precacheResourcesFunction(
+                                    relAbsFilePathsAndScriptPartUtil[relativePathUtil].fileContent,         // SADRZINA FAJLA ZA GRADNJU HEX-A (revision-A)
+                                    relativePathUtil.replace(/\\/, '/'),                                    // PATH             (url)
+                                )
+
+                            )
+
+                            
+
                         }
     
     
@@ -434,6 +536,21 @@ class SwLibWebpackPlugin {
                             serviceWorkerSourceCode = relAbsFilePathsAndScriptPartLib[relativePath].scriptPart + serviceWorkerSourceCode;
                             serviceWorkerSourceCodeSize = serviceWorkerSourceCode.length + relAbsFilePathsAndScriptPartLib[relativePath].scriptPartLength;
 
+
+                            // PRECACHE MANIFEST RELATED
+
+                            addToPrecacheSubstring(
+                                
+                                precacheManifestRel,                // OBJEKAT U KOJEM JE SVE VEZAN OZA PRECACHE MANIFEST
+                                
+                                precacheResourcesFunction(
+                                    relAbsFilePathsAndScriptPartLib[relativePath].fileContent,              // SADRZINA FAJLA ZA GRADNJU HEX-A (revision-A)
+                                    relativePath.replace(/\\/, '/'),                                        // PATH             (url)
+                                )
+
+                            )
+
+
                         }
         
                     }
@@ -442,7 +559,20 @@ class SwLibWebpackPlugin {
                     // ZADA M SERVICE WORKER FAJLU
                     compilation.assets[this.swPathInDist].source = () => serviceWorkerSourceCode;
                     compilation.assets[this.swPathInDist].size = () => serviceWorkerSourceCodeSize;
-                
+
+                    // I SADA CU DEFINISATI DODAVANJE NOVOG SOURCE-A PRECACHE MANIFEST ASSET-U
+                    // RVO TI OVDE DA IMAS SVE POBROJANE MOGUCE PROPERTIJE       precacheManifestRel    OBJEKTA
+                    // precacheManifestRel == {assetPathName, sourcecodeManStringLeft, sourcecodeManStringRight, substring};
+                    // assetPathName        SE ODNOSI NA PATH       PRECACHE MANIFEST-A
+                    
+                    let precaheManifestStringifiedCodebase = 
+                        precacheManifestRel.sourcecodeManStringLeft + (precacheManifestRel.substring || "") + precacheManifestRel.sourcecodeManStringRight 
+                    
+                    let sizeOfprecaheManifestStringifiedCodebase = precaheManifestStringifiedCodebase.length;
+
+                    compilation.assets[precacheManifestRel.assetPathName].source = () => precaheManifestStringifiedCodebase;
+                    compilation.assets[precacheManifestRel.assetPathName].size = () => sizeOfprecaheManifestStringifiedCodebase;
+
                     
                 }catch(err){
 
@@ -466,3 +596,14 @@ class SwLibWebpackPlugin {
 module.exports = SwLibWebpackPlugin;
 
 // I TO BI BILO SVE STO SE TICE MOG PRVOG WEBPACK PLUGIN-A
+
+// ONO STO CE TI MOZDA SADA BITI POTREBNO JESTE AUTHORING TVOG PLUGIN-A (TREBAO BI DA ISPRATIM LINK ZA POMENUTO)
+// U PITANJU JE WEBPACK-OV LINK KOJI ME UPRAVO UPUCUJEKAKO BI AUTORIZOVAO, SVOJ PLUGIN
+
+//              https://webpack.js.org/guides/author-libraries/
+
+//      NAKON STO AUTORIZUJEM TREBAO BIH PUBLISH-OVATI, MOJ PLUGIN
+
+// KAO npm PACKAGE         https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry           (OVAJ LINK GOVORI KAKO)
+
+// I KAO DOWNLOAD SA CDN-A                  https://unpkg.com/#/
