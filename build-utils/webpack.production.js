@@ -59,9 +59,21 @@ module.exports = (mode) => {        // ALI mode JE OVDE U SLUCAJU ONOGA STA JA Z
                 // ALI KORISTICU LOADER POSTAVKE SPECIJALNO ZA CSS I SPECIJALNO ZA SASS
                 // ZATO CU IMATI NESTO VISE MATCHING-A
                 
-                // DAKLE PROSTO SLEDECE SAM ZADRZAO, ALI DODACU MOGUCNOST DA CSS BUDE PODELJEN U MODULE 
-                {
+                // DAKLE PROSTO SLEDECE SAM ZADRZAO, ALI DODACU MOGUCNOST DA CSS BUDE PODELJEN U MODULE
+                // MODULI CE BITI ONI FAJLOVI, KOJI IMAJU .module.css u SVOM IMENU
+                // ALI PRVO DA DEFINISEM ZA
+                {   
                     test: /\.css$/i,
+                    exclude: /\.module\.css$/i,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        "css-loader"       // DAKLE ZELIM MODULE
+                    ]
+
+                },
+                
+                {
+                    test: /\.module\.css$/i,
                     use: [
                         MiniCssExtractPlugin.loader,
                         {loader: "css-loader", options: {modules: true, sourceMap: true}}       // DAKLE ZELIM MODULE
@@ -114,7 +126,7 @@ module.exports = (mode) => {        // ALI mode JE OVDE U SLUCAJU ONOGA STA JA Z
 
                         MiniCssExtractPlugin.loader,
                         "css-loader",
-                        {loader: "sass-loader"}
+                        "sass-loader"
 
                     ]
 

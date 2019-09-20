@@ -6,9 +6,15 @@
 // import './header.css';
 
 import './prviSassFajl.scss';
-import './blah.module.scss';
 
 import registerServiceWorker from './pwa_rel/service-worker-reg';
+
+import {blahFunkcija} from './some'
+
+import './blah.css';
+
+blahFunkcija();
+
 
 registerServiceWorker()
 .then(registration => {
