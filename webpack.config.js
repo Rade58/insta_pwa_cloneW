@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 
-const modeConfig = (mode, mainConfigPath) => require(`./build-utils/webpack.${mode}`)(mode, mainConfigPath);
+const modeConfig = (mode) => require(`./build-utils/webpack.${mode}`)(mode); // DOBRO JE DA SAM PROSLEDIO mode
 const addMergedPresetsConfigs = require('./build-utils/loadPresets');
 
 const MyFirstWebpackPlugin = require('./build-utils/MyFirstWebpackPlugin')
@@ -27,9 +27,9 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
                 new MyFirstWebpackPlugin(),
             ],
 
-            /* resolveLoader: {        // EVO DODAO SAM OVO
+            /* resolveLoader: { 
                 alias: {
-                    // "my-loader": require.resolve('../my-loader.js')   // MEDJUTIM OVAJ PATH VISE NE VALJA
+                    // "my-loader": require.resolve('../my-loader.js')
                     // "my-loader": require.resolve('./build-utils/my-loader.js')
                 }
         
@@ -38,12 +38,19 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
             module: {
                 rules: [
                     {
-                        test: /\.(jpe?g|png|svg)$/,
+                        test: /\.(jpe?g|png|svg)$/i,
                         use: [
                             {loader: "url-loader", options: {limit: 5000}},
                         ]
                     },
+                    /* {
+                        test: /\.s[ac]ss$/i,
+                        use: [
+                            {loader}
+                        ]
 
+                    }
+ */
                     //{test: /\.js$/, use: "my-loader"}// DODAO SAM OVO
                     
                 ]
