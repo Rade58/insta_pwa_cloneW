@@ -1,0 +1,7 @@
+#app#app#app {
+    border-style: groove;
+}
+
+#app::before {
+    content: "string neki"
+}

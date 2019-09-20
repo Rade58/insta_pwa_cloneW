@@ -1,0 +1,40 @@
+@import './prviModul.module.scss';
+@import './blah.module.scss';
+
+#app {
+    border: tomato dotted 14px;
+    background-color: khaki;
+
+    aside, main {
+        width: 38vw;
+        display: inline-block;
+    }
+
+    
+
+    aside {
+        border: orchid solid 2px;
+        // background-color: bisque;
+        height: 48vh;
+
+        .theme_dark & {
+            background-color: aqua;
+        }
+    }
+
+
+    main {
+        border: olive solid 4px;
+        // background-color: crimson;
+        height: 58vh;
+
+        .theme_light & {
+            background-color: darkorange;
+        }
+    }
+
+
+
+}
+
+
