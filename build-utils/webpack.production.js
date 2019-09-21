@@ -124,13 +124,9 @@ module.exports = (mode, mapUsage) => { // ALI mode JE OVDE U SLUCAJU ONOGA STA J
 
                         // SELDECI CE BITI css-loader, A ONO STO CU ZA NJEGA OMOGUCITI JESU MODULI 
 
-                        {
-                            loader: "css-loader",
-                            options: {
-                                modules: true,
-                                sourceMap: mapUsage   //
-                            }
-                        },
+                        
+                        {loader: "css-loader", options: {modules: true}},
+                         
 
                         // DEFINISEM I KORISCENJE SASS LAODER-A   (ON JE DAKLE LOADER KOJI CE PRVI LOAD-OVATI)
                                                                   //( ALI OPET NAPOMINJEM DA JE USVOJENA KONVENCIJA
@@ -152,7 +148,7 @@ module.exports = (mode, mapUsage) => { // ALI mode JE OVDE U SLUCAJU ONOGA STA J
                     use: [
 
                         MiniCssExtractPlugin.loader,
-                        {loader: "css-loader", options: {sourceMap: mapUsage}},
+                        "css-loader",
                         {loader: "sass-loader", options: {sourceMap: mapUsage}}
 
                     ]

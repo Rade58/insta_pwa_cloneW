@@ -41,7 +41,7 @@ module.exports = ({mode, presets} = {mode: "none", presets: []}) => {
             ],
 
             /* resolveLoader: { // NE OBRACAJ PAZNJU NA OVO, OVO SAM KORISTIO KADA SAM SE BAVIO PRAVLJANJEM 
-                                    // MY OWN LAODER-A
+                                    // MY OWN LAODER-A, ALI SAM OSTAVIO COMMENTED OUT CODE (NE SMETA)
                 alias: {
                     // "my-loader": require.resolve('../my-loader.js')
                     // "my-loader": require.resolve('./build-utils/my-loader.js')
