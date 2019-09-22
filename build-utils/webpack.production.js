@@ -173,7 +173,7 @@ module.exports = (mode, mapUsage) => { // ALI mode JE OVDE U SLUCAJU ONOGA STA J
                 filename: "[name].[hash].css",
 
                 // DEFINISEM I CHUNK FILENAME, KOJE CE SE SASTOJATI OD ID-JA I OD HEX-A
-                chunkFilename: "[id].[hash].css"
+                chunkFilename: "[id].[name].[hash].css"
 
             }),
 

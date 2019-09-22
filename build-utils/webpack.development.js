@@ -2,6 +2,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = (mode, mapUsage) => ({
+    
+    devtool: mapUsage? "source-map": false,
+    
     output: {
         chunkFilename: '[name]-lazy-load.js',
     },
