@@ -4,9 +4,15 @@ const HtmlWebpackChangeAssetsExtensionPlugin = require('html-webpack-change-asse
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 module.exports = () => ({
+    // NEMOJ DA IMAS MULTIPLE FOLDER-E ZA TVOJE PAGE-OVE, IMACES SAMO PROBLEME (PO MOJOJ PROCENI)
+    // JER MOGUCE JE DA POGRESIS NEKE LINK TAGOVE I SLICNO
+    // BOLJE JE DA SVE U DESTITNATION FOLDERU BUDE NA ISTOM NIVOU (OVO CISTO GOVORIM ZBOG HTML-A)
+
+    // NA PRIMER DOLE SI SVUGDE IMAO help/help; A SADA SAM PROMENIO NA help
+
     entry: {
         "index": './src/index.js',
-        "help/help": './src/help/help.js'
+        /*"help/help*"*/"help": './src/1.src_help/help.js'
     },
     output: {
         filename: '[name].bundle.js'
@@ -19,8 +25,8 @@ module.exports = () => ({
             jsExtension: ".gz"
         }),
         new HtmlWebpackPlugin({
-            filename: "help/help.html",
-            chunks: ["help/help"],
+            filename: "help.html",  // OVDE JE RANIJE BILO help/help.html
+            chunks: ["help"],   // OVDE JE RANIJE BILO help/help
             template: 'src/templates/template.html',
             jsExtension: ".gz"
         }),

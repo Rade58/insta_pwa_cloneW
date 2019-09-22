@@ -43,7 +43,7 @@ module.exports = () => ({
             includeDirectory: true,    // manifest will be generated on that directory
             dir: "ltr",
             lang: "en-US",
-            scope: '.',
+            scope: /*'.'*/ "http://localhost:8080/",
             fingerprints: true
         })
     ]
