@@ -226,7 +226,8 @@ class SwLibWebpackPlugin {
                                                                                             // U CODEBASE-U
                                                                                             // POZIVAS GA NA KRAJU
                                                                                             // DA BI SE BUILD FINALIZIRAO (PREDPOSTAVLJAM)
-            
+            // debugger;
+
             // JA DAKLE ZELIM DA UZMEM serviceworker FAJL IZ ASSET-A,  IDA MU DODAM NOVI CODE
 
             // KONKRETNO insertScript() NA POCETKU, SA PATH-OVIMA DO ONIH FAJLOVA KOJE TREBAM DA DODAM KAO ASSETS

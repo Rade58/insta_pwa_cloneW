@@ -37,31 +37,18 @@
     "dev:my-loader": "npm run dev -- --env.presets my-loader",
     "prod:my-loader": "npm run prod -- --env.presets my-loader",
     "prod:my-loader:debug": "npm run prod:debug -- --env.presets my-loader",
-    
-    
     "dev:debug:multi": "npm run dev:debug -- --env.presets multi",
     "dev:multi:inject-manifest": "npm run dev:multi -- --env.presets inject_manifest",
     "dev:multi:inject-manifest:sw-libs": "npm run dev:multi:inject-manifest -- --env.presets sw_libs",
     "dev:debug:multi:inject-manifest": "npm run dev:debug:multi -- --env.presets inject_manifest",
     "dev:debug:multi:inject-manifest:sw-libs": "npm run dev:debug:multi:inject-manifest -- --env.presets sw_libs",
-    
-
-    
-
-    
     "dev-my-plug": "npm run dev:multi:inject-manifest:sw-libs",
     "dev-debug-my-plug": "npm run dev:debug:multi:inject-manifest:sw-libs",
-    
     "dev:multi:inject-manifest:sw-libs:pwamanifest": "npm run dev:multi:inject-manifest:sw-libs -- --env.presets pwamanifest",
-
-
     "prod:multi_compress_serve:inject_manifest": "npm run prod:multi_compress_serve -- --env.presets inject_manifest",
     "prod:multi_compress_serve:inject_manifest:sw_libs": "npm run prod:multi_compress_serve:inject_manifest -- --env.presets sw_libs",
     "prod:multi_compress_serve:inject_manifest:sw_libs:pwamanifest": "npm run prod:multi_compress_serve:inject_manifest:sw_libs -- --env.presets pwamanifest",
-    
-
     "dev-final": "npm run dev:multi:inject-manifest:sw-libs:pwamanifest",
-    
     "prod-final": "npm run prod:multi_compress_serve:inject_manifest:sw_libs:pwamanifest",
     "start-dist": "http-server ./dist -p 5980 -a localhost -c-1 --gzip",
     "start-blah": "rimraf ./dist && npm run prod-final && npm run start-dist"
@@ -87,5 +74,8 @@
     "webpack-merge": "^4.2.2",
     "webpack-pwa-manifest": "^4.0.0",
     "workbox-webpack-plugin": "^4.3.1"
+  },
+  "dependencies": {
+    "normalize-path": "^3.0.0"
   }
 }
