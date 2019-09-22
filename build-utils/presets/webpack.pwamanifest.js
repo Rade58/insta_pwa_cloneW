@@ -1,5 +1,8 @@
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 
+// MOZDA SAMO DA NAPOMENEM DA CE SE, SE OVIM PLUGIN-OM EMITOVATI PWA MANIFEST, TAKO DA
+// MOZE DA SE KORISTI U DEVELOPMENT MODE-U
+
 module.exports = () => ({
     plugins: [
         new WebpackPwaManifest({

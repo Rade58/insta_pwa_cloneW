@@ -108,7 +108,7 @@ module.exports = (mode, mapUsage) => { // ALI mode JE OVDE U SLUCAJU ONOGA STA J
                 },
                 
                 // DAKLE TREBA MI REGULAR EXPRESSION KOJI MATCH-UJE 'SASS BUNDLE', ODNOSNO GLOBAL FAJL
-                // (ALI USTVARI PRVO ZELI MDA MATCH-UJEM SASS MODULE)
+                // (ALI USTVARI PRVO ZELIM DA MATCH-UJEM SASS MODULE)
                 // A STRIKTNO CU DEFINISATI DA U IMENU SASS FAJLA KOJI JE MODUL IMA .module.scss (TOKOM GRADNJE MOG APP-A)
                 {
                     test: /\.module\.s[ac]ss$/i,
@@ -123,8 +123,7 @@ module.exports = (mode, mapUsage) => { // ALI mode JE OVDE U SLUCAJU ONOGA STA J
                                                      // USTVARI DEFINISAO DA OVAJ PLUGIN KORISTI CHUNKOVE CSS-A
 
                         // SELDECI CE BITI css-loader, A ONO STO CU ZA NJEGA OMOGUCITI JESU MODULI 
-
-                        
+                        // MISLIM DA SAM NAPOMENUO ZASTO SAMO ZA NJEGA
                         {loader: "css-loader", options: {modules: true}},
                          
 

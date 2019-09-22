@@ -24,6 +24,20 @@ module.exports = (mode, mapUsage) => ({
                     {loader: "css-loader", options: {modules: true, sourceMap: mapUsage}}  // 
                 ]
             },
+
+            {
+            
+                test: /\.s(a|c)ss$/i,
+                exclude:  /\.module\.s[ac]ss$/i,
+                use: [
+
+                    "style-loader",
+                    "css-loader",
+                    {loader: "sass-loader", options: {sourceMap: mapUsage}}
+
+                ]
+
+            },
             
             {
                 test: /\.module\.s[ac]ss$/i,
@@ -40,20 +54,6 @@ module.exports = (mode, mapUsage) => ({
                     }
 
                 ]
-            },
-
-            {
-            
-                test: /\.s(a|c)ss$/i,
-                exclude:  /\.module\.s[ac]ss$/i,
-                use: [
-
-                    "style-loader",
-                    "css-loader",
-                    {loader: "sass-loader", options: {sourceMap: mapUsage}}
-
-                ]
-
             }
         ]
     },
