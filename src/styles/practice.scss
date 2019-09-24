@@ -1,0 +1,28 @@
+
+
+
+.container{
+
+
+    & .container2 {
+
+     
+
+        color: green;
+
+    }
+
+}
+
+.some {
+
+    section {
+
+        .dark & {
+            color: crimson;
+        }
+
+
+    }
+
+}

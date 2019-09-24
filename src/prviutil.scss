@@ -5,3 +5,14 @@
 #app::before {
     content: "string neki"
 }
+
+#app {
+
+    margin-top: 200px;
+
+    &::after {
+        content: url(/src/images/normal/image_18.jpg);
+        width: 38vw;
+    }
+
+}

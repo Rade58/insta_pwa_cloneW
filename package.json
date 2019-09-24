@@ -49,6 +49,7 @@
     "prod:multi_compress_serve:inject_manifest:sw_libs": "npm run prod:multi_compress_serve:inject_manifest -- --env.presets sw_libs",
     "prod:multi_compress_serve:inject_manifest:sw_libs:pwamanifest": "npm run prod:multi_compress_serve:inject_manifest:sw_libs -- --env.presets pwamanifest",
     "dev-final": "npm run dev:multi:inject-manifest:sw-libs:pwamanifest",
+    "dev-no-sw": "npm run dev:multi",
     "prod-final": "npm run prod:multi_compress_serve:inject_manifest:sw_libs:pwamanifest",
     "start-dist": "http-server ./dist -p 5980 -a localhost -c-1 --gzip",
     "start-blah": "rimraf ./dist && npm run prod-final && npm run start-dist"

@@ -1,13 +1,67 @@
 @import './prviutil.scss';
 
+
+$font_app: 4rem !default;
+
+
+$sel_light: "light";
+$sel_dark: "dark";
+
+div.kont {
+
+    $color_dark: #162c19de;
+    $color_light: #b3f0a9;
+    $bc-col-light: #f1dae6de;
+    $bc-col-dark: #380b1cde;
+
+    font-size: 1.2em;
+
+
+    > .article {
+
+        font-family: Verdana, Geneva, Tahoma, sans-serif; 
+
+
+        &.element-#{$sel_dark} {         // DAKLE UMECEM STRING U SAMI SELEKTOR
+
+                                        // OVO BI BILO TRANSPILED U CSS KAO    div.kont > .article.element-dark
+
+            color: $color_dark;
+            background-color: $bc-col-light;
+
+        }
+
+        &.element-#{$sel_light} {
+
+            color: $color_light;
+            background-color: $bc-col-dark;
+
+        }
+
+
+    }
+
+
+}
+
+
+
+
+
+
 #app {
     border: tomato dotted 14px;
     background-color: khaki;
 
-    aside, main {
+    font-size: $font_app;
+
+    aside, .main {
         width: 38vw;
         display: inline-block;
     }
+
+
+    
 
     
 
@@ -22,7 +76,7 @@
     }
 
 
-    main {
+    .main {
         border: olive solid 4px;
         // background-color: crimson;
         height: 58vh;
@@ -30,8 +84,18 @@
         .theme_light & {
             background-color: darkorange;
         }
-    }
 
+
+        $font_app: 2rem;
+
+        &::after {
+            content: "potice od main-A";
+            display: block;
+            font-size: $font_app;
+            
+        }
+
+    }
 
 
 }
