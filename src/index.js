@@ -52,9 +52,41 @@ rootEl.innerHTML = `
 <div class="some_el"></div>
 
 
+
+
+
 `
 document.body.classList.add('dark')
 
+document.body.innerHTML = `
+
+<div class="kontejner-cuda">
+    Neki Tekst u kontejneru
+
+    <div>
+        Tralalala elementov tekst
+
+        <section>
+            This is section 1
+        </section>
+        <section>
+            This is section 2
+        </section>
+        <section>
+            This is section 3
+        </section>
+        <section>
+            This is section 4
+        </section>
+
+    </div>
+
+
+</div>
+
+`
+
+document.body.innerHTML = `<input type="range">`;
 
 
 /////////////////////////////////////////////////////////////////////////

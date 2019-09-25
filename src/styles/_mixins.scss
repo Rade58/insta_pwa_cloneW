@@ -11,3 +11,49 @@
     }
 
 }
+
+
+@mixin fancy_blah($color_blah){
+
+    color: $color_blah;
+    font-family: 'Trebuchet MS';
+    border-top: #c5628b solid 18px;
+
+    > * {
+
+        border-right: #5dc39383 ridge 28px;
+        padding: 14px;
+        font-family: $curved_text_fam;
+        color: $color_sec;
+
+
+        > *:nth-child(2n)::after{
+
+            @content;           // EVO OVDE SAM DEFINISAO CONTENT
+
+            color: $font_lovely_color;
+            display: list-item;
+            list-style-type: lower-greek;
+            list-style-position: outside;
+            font-size: 28px;
+            margin-left: 28%;
+
+
+        }
+
+    }
+
+}
+
+
+@mixin range_input_uniform(){
+    input {
+
+        &[type="range"]{
+            // -webkit-appearance: none;
+        
+            @content;
+        }
+
+    }
+}

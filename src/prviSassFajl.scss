@@ -98,15 +98,57 @@ div.kont {
 }
 
 @import './styles/variables';
+
+
+
+@import './styles/variables_2';
 @import './styles/mixins';
+
+
+div {
+
+    &.kontejner-cuda {
+
+        @include fancy_blah(#b574e0){           // POZVAO SAM @include SA CULY BRACKETS-IMA
+
+            // SVE U OVOM BLUKU JE REPRESENTED BY @content
+            // STO ZNACI DA OVI OVDE STILOVI PRIPADATI DEFINISANOM PSEUDO ELEMENTU
+
+            content: $gener_text;
+            font-family: $gener_font;
+            border-left: $dark_border;
+            border-right: $lovely_border;
+
+        }
+
+    }
+
+}
+
+
+
+
+
 
 
 body{
 
     .some_el {
 
-        @include fancy_element($dark-redish, $error-text)       // NISAM DODAO TRECI ARGUMENT
+        @include fancy_element($dark-redish, null)       // NISAM DODAO TRECI ARGUMENT
 
     }
 
 }
+
+
+
+@include range_input_uniform(){
+
+    
+}
+
+
+
+
+
