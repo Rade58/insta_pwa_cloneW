@@ -7,24 +7,21 @@ $font_app: 4rem !default;
 $sel_light: "light";
 $sel_dark: "dark";
 
-div.kont {
 
-    $color_dark: #162c19de;
-    $color_light: #b3f0a9;
-    $bc-col-light: #f1dae6de;
-    $bc-col-dark: #380b1cde;
+div.kont {
 
     font-size: 1.2em;
 
+    @import './styles/variables';
 
     > .article {
 
-        font-family: Verdana, Geneva, Tahoma, sans-serif; 
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 
-        &.element-#{$sel_dark} {         // DAKLE UMECEM STRING U SAMI SELEKTOR
+        &.element-#{$sel_dark} {    // DAKLE UMECEM STRING U SAMI SELEKTOR
 
-                                        // OVO BI BILO TRANSPILED U CSS KAO    div.kont > .article.element-dark
+                                    // OVO BI BILO TRANSPILED U CSS KAO    div.kont > .article.element-dark
 
             color: $color_dark;
             background-color: $bc-col-light;
@@ -100,4 +97,16 @@ div.kont {
 
 }
 
+@import './styles/variables';
+@import './styles/mixins';
 
+
+body{
+
+    .some_el {
+
+        @include fancy_element($dark-redish, $error-text)       // NISAM DODAO TRECI ARGUMENT
+
+    }
+
+}

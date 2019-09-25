@@ -1,0 +1,13 @@
+@mixin fancy_element($color, $text, $background-color: blanchedalmond){         // ZADAO SAM DA JE
+    // DEFAULT VREDNOST POSLEDNJEG
+    // ARGUMENTA, USTVARI
+    // blanchedalmond
+    border: $color solid 8px;
+    color: $color;
+    background-color: $background-color;
+
+    &::after {
+        content: $text;
+    }
+
+}

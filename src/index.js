@@ -49,6 +49,8 @@ rootEl.innerHTML = `
     <section class="article element-light">Svetli Element</section>
 </div>
 
+<div class="some_el"></div>
+
 
 `
 document.body.classList.add('dark')
