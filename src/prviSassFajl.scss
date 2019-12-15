@@ -149,6 +149,21 @@ body{
 }
 
 
+@include add_color(26deg);
 
 
 
+
+
+$gradients: 
+    (to left top, blue, red),
+    (to left top, blue, yellow);
+
+.blah_image {
+
+    background-image: linear-gradient(nth($gradients, 2));
+
+    width: 200px;
+    height: 200px;
+
+}

@@ -2,25 +2,30 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
-module.exports = (mode, mapUsage) => { 
+module.exports = (mode, mapUsage) => {
 
     return {
-        devtool: mapUsage? "source-map": false,
+        devtool: mapUsage ? "source-map" : false,
 
         output: {
             filename: 'bundle.js',
             chunkFilename: '[id].[name]-lazy-load.js'
         },
-        
+
         module: {
             rules: [
-                
-                {   
+
+                {
                     test: /\.css$/i,
                     exclude: /\.module\.css$/i,
                     use: [
                         MiniCssExtractPlugin.loader,
-                        {loader: "css-loader", options: {sourceMap: mapUsage}}
+                        {
+                            loader: "css-loader",
+                            options: {
+                                sourceMap: mapUsage
+                            }
+                        }
                     ]
                 },
 
@@ -28,7 +33,13 @@ module.exports = (mode, mapUsage) => {
                     test: /\.module\.css$/i,
                     use: [
                         MiniCssExtractPlugin.loader,
-                        {loader: "css-loader", options: {modules: true, sourceMap: mapUsage}}
+                        {
+                            loader: "css-loader",
+                            options: {
+                                modules: true,
+                                sourceMap: mapUsage
+                            }
+                        }
                     ]
                 },
                 {
@@ -37,11 +48,18 @@ module.exports = (mode, mapUsage) => {
 
                         MiniCssExtractPlugin.loader,
 
-                        {loader: "css-loader", options: {modules: true}},
-                         
+                        {
+                            loader: "css-loader",
+                            options: {
+                                modules: true
+                            }
+                        },
+
                         {
                             loader: "sass-loader",
-                            options: {sourceMap: mapUsage}
+                            options: {
+                                sourceMap: mapUsage
+                            }
                         }
 
                     ]
@@ -49,19 +67,24 @@ module.exports = (mode, mapUsage) => {
 
                 {
                     test: /\.s(a|c)ss$/i,
-                    exclude:  /\.module\.s[ac]ss$/i,
+                    exclude: /\.module\.s[ac]ss$/i,
                     use: [
 
                         MiniCssExtractPlugin.loader,
                         "css-loader",
-                        {loader: "sass-loader", options: {sourceMap: mapUsage}}
+                        {
+                            loader: "sass-loader",
+                            options: {
+                                sourceMap: mapUsage
+                            }
+                        }
 
                     ]
 
                 }
 
             ]
-            
+
         },
 
         plugins: [
@@ -80,8 +103,8 @@ module.exports = (mode, mapUsage) => {
                 template: 'src/templates/fallback_offline.html',
             }),
         ],
-             
-            /* 
+
+        /* 
         resolve: {
             extensions: ['.js', '.sass', '.scss']
         }
